@@ -828,7 +828,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -33.119244, y: -4.713664, z: -10.666698}
+  m_LocalPosition: {x: -31.832726, y: -4.713664, z: -10.666698}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -83025,7 +83025,7 @@ GameObject:
   - component: {fileID: 2062187415}
   - component: {fileID: 2062187414}
   m_Layer: 0
-  m_Name: Point Light 2D
+  m_Name: Point Light 2D 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
