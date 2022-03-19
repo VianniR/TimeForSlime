@@ -79,7 +79,7 @@ public class MasterController : MonoBehaviour
 
        
         //Movement
-        if (!Mathf.Approximately(playerRb.velocity.x, 0.0f))
+        /*if (!Mathf.Approximately(playerRb.velocity.x, 0.0f))
         {
             animController.PlayAnim("Run", 1);
             moveDirection = (int)Mathf.Sign(playerRb.velocity.x);
@@ -87,7 +87,7 @@ public class MasterController : MonoBehaviour
         else
         {
             animController.PlayAnim("Idle", 2);
-        }
+        }*/
 
         if (Input.GetKey(KeyCode.Space) && onGround && !isJumping)
         {
