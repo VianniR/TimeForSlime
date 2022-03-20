@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6383550748330084078}
   - component: {fileID: -5537149189394137593}
   - component: {fileID: 5196899114082276738}
+  - component: {fileID: -4325251776771039902}
+  - component: {fileID: -5884772338761651667}
   m_Layer: 0
   m_Name: PoisonPelet
   m_TagString: EnemyAttack
@@ -121,3 +123,30 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-4325251776771039902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4222980641043688932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f319941468c4671418d6a1f78d62f931, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 7
+  damage: 1
+  stunTime: 0.2
+--- !u!114 &-5884772338761651667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4222980641043688932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24cf7f6ce21d2574187829a35be7b68c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

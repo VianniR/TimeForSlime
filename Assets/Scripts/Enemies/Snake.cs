@@ -25,7 +25,7 @@ public class Snake : MasterEnemy
         {
             IdleWalk();
         }
-        else if(!isAttacking)
+        else if(!isAttacking && !stunned)
         {
             distFromPlayer = player.position.x - transform.position.x;
 
@@ -64,9 +64,9 @@ public class Snake : MasterEnemy
     {
         canAttack = false;
         isAttacking = true;
+        yield return new WaitForSeconds(0.3f);
         Rigidbody2D projRb = Instantiate(poisonProjectile, transform.position, poisonProjectile.transform.rotation).GetComponent<Rigidbody2D>();
         projRb.velocity = new Vector2(Mathf.Sign(distFromPlayer) * projectileSpeed, 5f);
-        yield return new WaitForSeconds(0.3f);
         isAttacking = false;
         StartCoroutine(AttackCooldown());
     }
