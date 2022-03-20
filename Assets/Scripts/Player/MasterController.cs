@@ -20,23 +20,22 @@ public class MasterController : MonoBehaviour
     public Transform groundCheckers;
     protected GroundCheck collisionCheckScript;
 
-    public Animator goobyAnim;
+    public Animator morphAnim;
     public float fallFactor;
     protected AnimationController animController;
 
     public int moveDirection;
     private bool isJumping;
     public float gravity;
-    public float invincTime;
     public SpriteRenderer playerSprite;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         moveDirection = 1;
         playerRb = transform.parent.GetComponent<Rigidbody2D>();
         collisionCheckScript = groundCheckers.gameObject.GetComponent<GroundCheck>();
-        animController = new AnimationController(goobyAnim, "Idle");
+        animController = new AnimationController(morphAnim, "Idle");
     }
 
     public void MovePlayerStandard()

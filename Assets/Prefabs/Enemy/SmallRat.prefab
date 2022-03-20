@@ -225,7 +225,7 @@ MonoBehaviour:
   attackCooldown: 1
   runSpeed: 5
   attackRange: {fileID: 4532901116162952879}
-  defaultKnockback: {fileID: 0}
+  defaultKnockback: {fileID: 3296308404937789323}
 --- !u!114 &3077247091875874850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +241,7 @@ MonoBehaviour:
   force: 7
   damage: 0
   stunTime: 0.2
+  targetTransform: {fileID: 3296308404937789324}
 --- !u!1 &4532901116162952879
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,6 +316,7 @@ MonoBehaviour:
   force: 10
   damage: 1
   stunTime: 0.2
+  targetTransform: {fileID: 4122041527361451586}
 --- !u!212 &1641547290852304147
 SpriteRenderer:
   m_ObjectHideFlags: 0

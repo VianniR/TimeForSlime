@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   morph: {fileID: 6393868692279646552, guid: 1916f5c26217a294691d13071d9ce22a, type: 3}
-  morphCard: {fileID: 21300000, guid: bc079bea82896c44096ea1a36db8cb58, type: 3}
+  morphCard: {fileID: 21300000, guid: 35da04d749d2b3b4e80798167b2f68a2, type: 3}
 --- !u!1 &5411045882688975710
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,12 +119,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cbec14ad07b10124da6a2d352c8619c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53f074544af8f2842953c66636ca02ef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -147,8 +147,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

@@ -7,13 +7,14 @@ public class KnockbackData : MonoBehaviour
     public float force;
     public int damage;
     public float stunTime;
+    public Transform targetTransform;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
-            Vector2 hitDirection = new Vector2(Mathf.Sign(player.transform.position.x - transform.position.x), Mathf.Sign(player.transform.position.y - transform.position.y));
+            Vector2 hitDirection = new Vector2(Mathf.Sign(player.transform.position.x - targetTransform.position.x), Mathf.Sign(player.transform.position.y - targetTransform.position.y));
             player.Hit(hitDirection * force, damage, stunTime);
         }
     }
@@ -23,7 +24,7 @@ public class KnockbackData : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             PlayerController player = GameObject.Find("Player").GetComponent<PlayerController>();
-            Vector2 hitDirection = new Vector2(Mathf.Sign(player.transform.position.x - transform.position.x), Mathf.Sign(player.transform.position.y - transform.position.y));
+            Vector2 hitDirection = new Vector2(Mathf.Sign(player.transform.position.x - targetTransform.position.x), Mathf.Sign(player.transform.position.y - targetTransform.position.y));
             player.Hit(hitDirection * force, damage, stunTime);
         }
     }

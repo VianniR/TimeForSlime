@@ -18,13 +18,11 @@ public class GoobyController : MasterController
     public float attackCooldown;
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
         isAttacking = false;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        playerRb = transform.parent.GetComponent<Rigidbody2D>();
-        collisionCheckScript = groundCheckers.gameObject.GetComponent<GroundCheck>();
-        animController = new AnimationController(goobyAnim, "Idle");
     }
 
     // Update is called once per frame
@@ -42,7 +40,7 @@ public class GoobyController : MasterController
 
         if (playerRb.velocity.x != 0 && !swordCollider.activeSelf)
         {
-            goobySprite.localScale = new Vector3(1 * moveDirection, goobySprite.localScale.y, 1f);
+            goobySprite.localScale = new Vector3(1.5f * moveDirection, goobySprite.localScale.y, 1f);
         }
 
         

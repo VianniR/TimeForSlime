@@ -65,7 +65,7 @@ public class Snake : MasterEnemy
         canAttack = false;
         isAttacking = true;
         yield return new WaitForSeconds(0.3f);
-        Rigidbody2D projRb = Instantiate(poisonProjectile, transform.position, poisonProjectile.transform.rotation).GetComponent<Rigidbody2D>();
+        Rigidbody2D projRb = Instantiate(poisonProjectile, transform.position, poisonProjectile.transform.rotation, transform).GetComponent<Rigidbody2D>();
         projRb.velocity = new Vector2(Mathf.Sign(distFromPlayer) * projectileSpeed, 5f);
         isAttacking = false;
         StartCoroutine(AttackCooldown());
