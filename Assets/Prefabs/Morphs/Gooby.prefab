@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 423856121478816334}
   - component: {fileID: 5702398992605514488}
+  - component: {fileID: 1757781367059428364}
   m_Layer: 11
   m_Name: Sword0
   m_TagString: PlayerWeapon
@@ -57,6 +58,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2394104, y: 0.5749402}
   m_EdgeRadius: 0
+--- !u!114 &1757781367059428364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237416387556663977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fade6dfa8ea50ea41b8a3a7223982614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 8
+  damage: 1
 --- !u!1 &1229129010300445367
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,12 +289,12 @@ MonoBehaviour:
   moveDirection: 0
   gravity: 12
   playerSprite: {fileID: 5690913583970375228}
+  attackCooldown: 0.1
   invincColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 0.84313726}
   goobySprite: {fileID: 5646436244483164024}
   weapon: {fileID: 8514586689807600980}
   weaponAnim: {fileID: 3116636265271499609}
   swordCollider: {fileID: 237416387556663977}
-  attackCooldown: 0.1
 --- !u!212 &5690913583970375228
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -378,7 +393,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8514586689807600980}
-  - component: {fileID: 4469854753069512059}
   m_Layer: 11
   m_Name: Weapon
   m_TagString: PlayerWeapon
@@ -402,17 +416,3 @@ Transform:
   m_Father: {fileID: 4586646740351250762}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4469854753069512059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7709729286378824751}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fade6dfa8ea50ea41b8a3a7223982614, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 8
-  damage: 1

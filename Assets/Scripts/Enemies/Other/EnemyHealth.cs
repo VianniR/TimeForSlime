@@ -32,7 +32,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("PlayerWeapon"))
         {
-            Weapon weapon = collision.transform.parent.gameObject.GetComponent<Weapon>();
+            Weapon weapon = collision.GetComponent<Weapon>();
             PlayerController playerScript = GameObject.Find("Player").GetComponent<PlayerController>();
             health -= weapon.damage;
             Knockback(playerScript.hitDirection, weapon.force);

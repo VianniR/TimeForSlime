@@ -385,6 +385,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 297948491}
     m_Modifications:
+    - target: {fileID: 237416387556663977, guid: 96a288dd7ab85ce469529097efc7869e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5646436244483164019, guid: 96a288dd7ab85ce469529097efc7869e, type: 3}
       propertyPath: m_Name
       value: Gooby

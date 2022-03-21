@@ -29,6 +29,9 @@ public class MasterController : MonoBehaviour
     public float gravity;
     public SpriteRenderer playerSprite;
 
+    public float attackCooldown;
+    protected float initWidth;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -36,6 +39,8 @@ public class MasterController : MonoBehaviour
         playerRb = transform.parent.GetComponent<Rigidbody2D>();
         collisionCheckScript = groundCheckers.gameObject.GetComponent<GroundCheck>();
         animController = new AnimationController(morphAnim, "Idle");
+        initWidth = transform.localScale.x;
+        playerParent = transform.parent.GetComponent<PlayerController>();
     }
 
     public void MovePlayerStandard()

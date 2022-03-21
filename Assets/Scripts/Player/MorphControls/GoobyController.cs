@@ -15,8 +15,6 @@ public class GoobyController : MasterController
     bool isAttacking;
     float swordUpTimer;
 
-    public float attackCooldown;
-
     // Start is called before the first frame update
     new void Start()
     {
@@ -40,7 +38,7 @@ public class GoobyController : MasterController
 
         if (playerRb.velocity.x != 0 && !swordCollider.activeSelf)
         {
-            goobySprite.localScale = new Vector3(1.5f * moveDirection, goobySprite.localScale.y, 1f);
+            goobySprite.localScale = new Vector3(initWidth * moveDirection, goobySprite.localScale.y, 1f);
         }
 
         

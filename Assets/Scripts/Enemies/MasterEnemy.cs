@@ -24,6 +24,8 @@ public class MasterEnemy : MonoBehaviour
     protected bool canAttack;
     public float attackCooldown;
 
+    private float initWidth;
+
 
     // Start is called before the first frame update
     protected void Start()
@@ -35,6 +37,7 @@ public class MasterEnemy : MonoBehaviour
         onGround = true;
         direction = 1;
         player = GameObject.Find("Player").transform;
+        initWidth = transform.localScale.x;
     }
 
     public void IdleWalk()
@@ -56,14 +59,14 @@ public class MasterEnemy : MonoBehaviour
         if (wall.Contains("Ground"))
         {
             direction *= -1;
-            transform.localScale = new Vector3(direction, 1f, 1f);
+            transform.localScale = new Vector3(direction * initWidth, transform.localScale.y, 1f);
         }
     }
 
     public void SetDirection(int newDir)
     {
         direction = newDir;
-        transform.localScale = new Vector3(direction, 1f, 1f);
+        transform.localScale = new Vector3(direction * initWidth, transform.localScale.y, 1f);
     }
 
     public bool SeekPlayerRay()
