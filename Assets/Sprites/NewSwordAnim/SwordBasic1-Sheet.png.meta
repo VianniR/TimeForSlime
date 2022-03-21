@@ -47,6 +47,9 @@ TextureImporter:
   - first:
       213: -8468082905069713419
     second: SwordBasic1-Sheet_14
+  - first:
+      213: 7481599240187524991
+    second: SwordBasic1-Sheet_15
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -177,7 +180,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -196,9 +199,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_1
       rect:
         serializedVersion: 2
-        x: 40
+        x: 35
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -217,9 +220,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_2
       rect:
         serializedVersion: 2
-        x: 80
+        x: 70
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -238,9 +241,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_3
       rect:
         serializedVersion: 2
-        x: 120
+        x: 105
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -259,9 +262,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_4
       rect:
         serializedVersion: 2
-        x: 160
+        x: 140
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -280,9 +283,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_5
       rect:
         serializedVersion: 2
-        x: 200
+        x: 175
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -301,9 +304,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_6
       rect:
         serializedVersion: 2
-        x: 240
+        x: 210
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -322,9 +325,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_7
       rect:
         serializedVersion: 2
-        x: 280
+        x: 245
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -343,9 +346,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_8
       rect:
         serializedVersion: 2
-        x: 320
+        x: 280
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -364,9 +367,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_9
       rect:
         serializedVersion: 2
-        x: 360
+        x: 315
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -385,9 +388,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_10
       rect:
         serializedVersion: 2
-        x: 400
+        x: 350
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -406,9 +409,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_11
       rect:
         serializedVersion: 2
-        x: 440
+        x: 385
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -427,9 +430,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_12
       rect:
         serializedVersion: 2
-        x: 480
+        x: 420
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -448,9 +451,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_13
       rect:
         serializedVersion: 2
-        x: 520
+        x: 455
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -469,9 +472,9 @@ TextureImporter:
       name: SwordBasic1-Sheet_14
       rect:
         serializedVersion: 2
-        x: 560
+        x: 490
         y: 0
-        width: 40
+        width: 35
         height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -482,6 +485,27 @@ TextureImporter:
       bones: []
       spriteID: 5f703c2b6735b7a80800000000000000
       internalID: -8468082905069713419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SwordBasic1-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 0
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f77b537aedaf3d760800000000000000
+      internalID: 7481599240187524991
       vertices: []
       indices: 
       edges: []
