@@ -14,6 +14,7 @@ public class GoobyController : MasterController
     public GameObject swordCollider;
     bool isAttacking;
     float swordUpTimer;
+    bool swordFlip;
 
     // Start is called before the first frame update
     new void Start()
@@ -21,6 +22,7 @@ public class GoobyController : MasterController
         base.Start();
         isAttacking = false;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        swordFlip = false;
     }
 
     // Update is called once per frame
@@ -48,7 +50,7 @@ public class GoobyController : MasterController
         }
         else if(swordUpTimer > -1)
         {
-            weapon.transform.localScale = new Vector3(weapon.transform.localScale.x, 1f, 1f);
+            swordFlip = false;
             swordUpTimer = -2;
         }
     }
@@ -62,8 +64,11 @@ public class GoobyController : MasterController
 
 
         playerParent.hitDirection = new Vector2(goobySprite.localScale.x, 0);
-        
-        weaponAnim.Play("Swing");
+
+        if(!swordFlip)
+            animController.PlayAnim("SwordDown", 3);
+        else
+            animController.PlayAnim("SwordUp", 3);
 
 
         swordCollider.SetActive(true);
@@ -74,7 +79,7 @@ public class GoobyController : MasterController
 
         if(swordUpTimer > 0)
         {
-            weapon.transform.localScale = new Vector3(weapon.transform.localScale.x, -weapon.transform.localScale.y, 1f);
+            swordFlip = !swordFlip;
         }
     }
 }

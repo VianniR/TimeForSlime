@@ -45,6 +45,7 @@ public class MasterController : MonoBehaviour
 
     public void MovePlayerStandard()
     {
+        animController.UpdateAnim();
         if (onGround)
             currCollision = CheckCollisions();
 
