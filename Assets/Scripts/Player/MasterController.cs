@@ -38,14 +38,14 @@ public class MasterController : MonoBehaviour
         moveDirection = 1;
         playerRb = transform.parent.GetComponent<Rigidbody2D>();
         collisionCheckScript = groundCheckers.gameObject.GetComponent<GroundCheck>();
-        animController = new AnimationController(morphAnim, "Idle");
         initWidth = transform.localScale.x;
         playerParent = transform.parent.GetComponent<PlayerController>();
+        animController = GetComponent<AnimationController>();
+        animController.AssignValues(morphAnim, "Idle");
     }
 
     public void MovePlayerStandard()
     {
-        animController.UpdateAnim();
         if (onGround)
             currCollision = CheckCollisions();
 
@@ -200,5 +200,10 @@ public class MasterController : MonoBehaviour
         playerSprite.color = new Color(255, 255, 255, 1);
         yield return new WaitForSeconds(0.3f);
         gameObject.layer = 9;
+    }
+
+    public void MoveRb(float x)
+    {
+        playerRb.position += new Vector2(x * moveDirection, 0);
     }
 }

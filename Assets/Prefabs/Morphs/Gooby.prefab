@@ -152,7 +152,7 @@ SpriteRenderer:
   m_Size: {x: 0.78125, y: 0.78125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &3116636265271499609
@@ -165,7 +165,7 @@ Animator:
   m_GameObject: {fileID: 1229129010300445367}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 14f5d30f7badeae428a9228914822ce5, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 5690913583970375228}
   - component: {fileID: 8130924575326148326}
   - component: {fileID: 4738868981763928980}
+  - component: {fileID: 1666248802521696807}
   m_Layer: 9
   m_Name: Gooby
   m_TagString: Player
@@ -286,6 +287,7 @@ MonoBehaviour:
   groundCheckers: {fileID: 5646436244483164024}
   morphAnim: {fileID: 8130924575326148326}
   fallFactor: 0
+  animController: {fileID: 0}
   moveDirection: 0
   gravity: 12
   playerSprite: {fileID: 5690913583970375228}
@@ -384,6 +386,20 @@ MonoBehaviour:
   referenceCollider: {fileID: 5646436244483164029}
   width: 0
   height: 0
+--- !u!114 &1666248802521696807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5646436244483164019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a61c6c7c18852e46a69c3f9d925ccfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  groundState: 
 --- !u!1 &7709729286378824751
 GameObject:
   m_ObjectHideFlags: 0

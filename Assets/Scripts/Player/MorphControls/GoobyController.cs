@@ -66,9 +66,9 @@ public class GoobyController : MasterController
         playerParent.hitDirection = new Vector2(goobySprite.localScale.x, 0);
 
         if(!swordFlip)
-            animController.PlayAnim("SwordDown", 3);
+            animController.PlayAnim("SwordDown", 4);
         else
-            animController.PlayAnim("SwordUp", 3);
+            animController.PlayAnim("SwordUp", 4);
 
 
         swordCollider.SetActive(true);

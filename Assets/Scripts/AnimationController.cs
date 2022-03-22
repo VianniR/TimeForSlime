@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationController
+public class AnimationController : MonoBehaviour
 {
-    public Animator animator;
-    public string groundState;
+    private Animator animator;
+    private string groundState;
     private int currAnimationOverride;
 
-    public AnimationController(Animator animator, string idle)
+    public void AssignValues(Animator animator, string idle)
     {
         this.animator = animator;
         groundState = idle;
@@ -30,11 +30,8 @@ public class AnimationController
         return false;
     }
 
-    public void UpdateAnim()
+    public void SetPriorityLevel(int level)
     {
-        if(animator.IsInTransition(0))
-        {
-            currAnimationOverride = 0;
-        }
+        currAnimationOverride = level;
     }
 }
