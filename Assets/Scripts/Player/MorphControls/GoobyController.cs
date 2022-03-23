@@ -30,7 +30,7 @@ public class GoobyController : MasterController
         if (!playerParent.stunned)
             MovePlayerStandard();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && !playerParent.stunned)
+        if (Input.GetKey(KeyCode.Mouse0) && !isAttacking && !playerParent.stunned)
         {
             Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             float angle = Mathf.Atan2(mousePos.y, mousePos.x);
@@ -77,12 +77,9 @@ public class GoobyController : MasterController
         swordCollider.SetActive(false);
         yield return new WaitForSeconds(attackCooldown);
 
-        if(swordUpTimer > 0)
-        {
-            swordDir++;
-            if (swordDir > 2)
-                swordDir = 0;
-        }
+        swordDir++;
+        if (swordDir > 2)
+            swordDir = 0;
 
         isAttacking = false;
     }

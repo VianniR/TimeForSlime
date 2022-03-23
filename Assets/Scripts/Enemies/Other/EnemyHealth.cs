@@ -36,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
             PlayerController playerScript = GameObject.Find("Player").GetComponent<PlayerController>();
             health -= weapon.damage;
             Knockback(playerScript.hitDirection, weapon.force);
-            //Debug.Log("hit");
+            Debug.Log("hit");
         }
     }
 

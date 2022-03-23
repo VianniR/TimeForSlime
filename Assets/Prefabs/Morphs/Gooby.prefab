@@ -259,7 +259,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.25, y: 1.25}
     newSize: {x: 0.16, y: 0.34}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -287,11 +287,10 @@ MonoBehaviour:
   groundCheckers: {fileID: 5646436244483164024}
   morphAnim: {fileID: 8130924575326148326}
   fallFactor: 0
-  animController: {fileID: 0}
   moveDirection: 0
   gravity: 12
   playerSprite: {fileID: 5690913583970375228}
-  attackCooldown: 0.1
+  attackCooldown: 0.3
   invincColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 0.84313726}
   goobySprite: {fileID: 5646436244483164024}
   weapon: {fileID: 8514586689807600980}
@@ -398,8 +397,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a61c6c7c18852e46a69c3f9d925ccfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  groundState: 
 --- !u!1 &7709729286378824751
 GameObject:
   m_ObjectHideFlags: 0
