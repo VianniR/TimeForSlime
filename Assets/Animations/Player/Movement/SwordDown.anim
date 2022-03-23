@@ -91,6 +91,6 @@ AnimationClip:
     functionName: MoveRb
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0.2
+    floatParameter: 0.4
     intParameter: 0
     messageOptions: 0

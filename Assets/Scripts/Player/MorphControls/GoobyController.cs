@@ -12,23 +12,22 @@ public class GoobyController : MasterController
 
     private Camera cam;
     public GameObject swordCollider;
-    bool isAttacking;
     float swordUpTimer;
-    bool swordFlip;
+    int swordDir;
 
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
-        isAttacking = false;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        swordFlip = false;
+        swordDir = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!playerParent.stunned)
+        morphAnim.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
+        if (!playerParent.stunned)
             MovePlayerStandard();
 
         if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && !playerParent.stunned)
@@ -50,14 +49,14 @@ public class GoobyController : MasterController
         }
         else if(swordUpTimer > -1)
         {
-            swordFlip = false;
+            swordDir = 0;
             swordUpTimer = -2;
         }
     }
 
     IEnumerator EnableCollider(float angle)
     {
-        swordUpTimer = attackCooldown + 0.4f;
+        swordUpTimer = 0.75f;
         isAttacking = true;
         if (angle < 0)
             angle += (2 * Mathf.PI);
@@ -65,21 +64,26 @@ public class GoobyController : MasterController
 
         playerParent.hitDirection = new Vector2(goobySprite.localScale.x, 0);
 
-        if(!swordFlip)
+        if (swordDir == 0)
             animController.PlayAnim("SwordDown", 4);
-        else
+        else if (swordDir == 1)
             animController.PlayAnim("SwordUp", 4);
+        else
+            animController.PlayAnim("SwordThrust", 4);
 
 
         swordCollider.SetActive(true);
         yield return new WaitForSeconds(.1f);
         swordCollider.SetActive(false);
         yield return new WaitForSeconds(attackCooldown);
-        isAttacking = false;
 
         if(swordUpTimer > 0)
         {
-            swordFlip = !swordFlip;
+            swordDir++;
+            if (swordDir > 2)
+                swordDir = 0;
         }
+
+        isAttacking = false;
     }
 }

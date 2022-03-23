@@ -67,7 +67,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: ReturnIdle
+    functionName: SetPriorityLevel
     data: 
     objectReferenceParameter: {fileID: 11500000, guid: 9fad5519d1712934f912aba4f44c7c92, type: 3}
     floatParameter: 0

@@ -32,6 +32,8 @@ public class MasterController : MonoBehaviour
     public float attackCooldown;
     protected float initWidth;
 
+    protected bool isAttacking;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -42,6 +44,7 @@ public class MasterController : MonoBehaviour
         playerParent = transform.parent.GetComponent<PlayerController>();
         animController = GetComponent<AnimationController>();
         animController.AssignValues(morphAnim, "Idle");
+        isAttacking = false;
     }
 
     public void MovePlayerStandard()
@@ -86,12 +89,8 @@ public class MasterController : MonoBehaviour
         //Movement
         if (!Mathf.Approximately(playerRb.velocity.x, 0.0f))
         {
-            animController.PlayAnim("Run", 1);
+            animController.PlayAnim("Run", 2);
             moveDirection = (int)Mathf.Sign(playerRb.velocity.x);
-        }
-        else
-        {
-            animController.PlayAnim("Idle", 2);
         }
 
         if (Input.GetKey(KeyCode.Space) && onGround && !isJumping)
