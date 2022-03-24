@@ -15,6 +15,8 @@ public class GoobyController : MasterController
     float swordUpTimer;
     int swordDir;
 
+    public AnimationController weaponAnimContr;
+
     // Start is called before the first frame update
     new void Start()
     {
@@ -27,8 +29,12 @@ public class GoobyController : MasterController
     void Update()
     {
         morphAnim.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
-        if (!playerParent.stunned)
+        if (!playerParent.stunned && !(swordDir == 2 && isAttacking))
             MovePlayerStandard();
+        else
+        {
+            playerRb.velocity = new Vector2(0, playerRb.velocity.y);
+        }
 
         if (Input.GetKey(KeyCode.Mouse0) && !isAttacking && !playerParent.stunned)
         {
@@ -37,7 +43,7 @@ public class GoobyController : MasterController
             StartCoroutine(EnableCollider(angle));
         }
 
-        if (playerRb.velocity.x != 0 && !swordCollider.activeSelf)
+        if (playerRb.velocity.x != 0 && !isAttacking)
         {
             goobySprite.localScale = new Vector3(initWidth * moveDirection, goobySprite.localScale.y, 1f);
         }
@@ -65,11 +71,19 @@ public class GoobyController : MasterController
         playerParent.hitDirection = new Vector2(goobySprite.localScale.x, 0);
 
         if (swordDir == 0)
-            animController.PlayAnim("SwordDown", 4);
+        {
+            animController.PlayAnim("SwordDown", 2);
+            weaponAnimContr.PlayAnim("SwordDown", 2);
+        }
         else if (swordDir == 1)
-            animController.PlayAnim("SwordUp", 4);
+        {
+            animController.PlayAnim("SwordUp", 2);
+            weaponAnimContr.PlayAnim("SwordUp", 2);
+        }
         else
+        {
             animController.PlayAnim("SwordThrust", 4);
+        }
 
 
         swordCollider.SetActive(true);
@@ -82,5 +96,6 @@ public class GoobyController : MasterController
             swordDir = 0;
 
         isAttacking = false;
+        goobySprite.localScale = new Vector3(initWidth * moveDirection, goobySprite.localScale.y, 1f);
     }
 }

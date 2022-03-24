@@ -43,7 +43,6 @@ public class MasterController : MonoBehaviour
         initWidth = transform.localScale.x;
         playerParent = transform.parent.GetComponent<PlayerController>();
         animController = GetComponent<AnimationController>();
-        animController.AssignValues(morphAnim, "Idle");
         isAttacking = false;
     }
 
@@ -203,6 +202,7 @@ public class MasterController : MonoBehaviour
 
     public void MoveRb(float x)
     {
+        if(Mathf.Approximately(playerRb.velocity.x, 0))
         playerRb.position += new Vector2(x * moveDirection, 0);
     }
 }

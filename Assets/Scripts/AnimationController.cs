@@ -5,13 +5,12 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     private Animator animator;
-    private string groundState;
+    public string groundState;
     private int currAnimationOverride;
-
-    public void AssignValues(Animator animator, string idle)
+    
+    void Start()
     {
-        this.animator = animator;
-        groundState = idle;
+        animator = GetComponent<Animator>();
     }
 
     public bool PlayAnim(string animation, int priority)
