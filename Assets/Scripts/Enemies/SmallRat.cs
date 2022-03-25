@@ -8,11 +8,13 @@ public class SmallRat : MasterEnemy
     public float runSpeed;
     public GameObject attackRange;
     public GameObject defaultKnockback;
+    public Animator scratchAnim;
 
     private void Start()
     {
         base.Start();
         gameObject.layer = 8;
+        canAttack = false;
     }
     // Update is called once per frame
     void Update()
@@ -52,14 +54,13 @@ public class SmallRat : MasterEnemy
         {
             angered = true;
             StartCoroutine(AttackCooldown());
-            //defaultKnockback.SetActive(true);
-            gameObject.layer = 0;
         }
     }
 
     IEnumerator Slash()
     {
         canAttack = false;
+        scratchAnim.Play("Scratch");
         attackRange.SetActive(true);
         transform.Translate(0.03f * direction, 0, 0);
         yield return new WaitForSeconds(0.2f);

@@ -7,6 +7,7 @@ public class RatController : MasterController
     public GameObject attackCollider;
     bool canAttack;
     private float currSpeed;
+    public Animator scratchAnim;
 
     // Start is called before the first frame update
     new void Start()
@@ -14,6 +15,7 @@ public class RatController : MasterController
         base.Start();
         //animController = new AnimationController(blobAnim, "Idle");
         currSpeed = speed;
+        canAttack = true;
     }
 
     // Update is called once per frame
@@ -40,6 +42,11 @@ public class RatController : MasterController
         {
             StartCoroutine(EnableAttackCollider());
         }
+
+        if (playerRb.velocity.x != 0)
+        {
+            transform.localScale = new Vector3(initWidth * Mathf.Sign(playerRb.velocity.x), transform.localScale.y, 1f);
+        }
     }
 
     IEnumerator EnableAttackCollider()
@@ -48,10 +55,10 @@ public class RatController : MasterController
 
         playerParent.hitDirection = new Vector2(transform.localScale.x, 0);
 
-        //weaponAnim.Play("Swing");
+        scratchAnim.Play("Scratch");
 
         attackCollider.SetActive(true);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.25f);
         attackCollider.SetActive(false);
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
