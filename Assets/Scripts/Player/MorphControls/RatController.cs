@@ -7,7 +7,6 @@ public class RatController : MasterController
     public GameObject attackCollider;
     bool canAttack;
     private float currSpeed;
-    public Animator scratchAnim;
 
     // Start is called before the first frame update
     new void Start()
@@ -54,8 +53,6 @@ public class RatController : MasterController
         canAttack = false;
 
         playerParent.hitDirection = new Vector2(transform.localScale.x, 0);
-
-        scratchAnim.Play("Scratch");
 
         attackCollider.SetActive(true);
         yield return new WaitForSeconds(.25f);

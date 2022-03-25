@@ -8,7 +8,6 @@ public class SmallRat : MasterEnemy
     public float runSpeed;
     public GameObject attackRange;
     public GameObject defaultKnockback;
-    public Animator scratchAnim;
 
     private void Start()
     {
@@ -60,7 +59,6 @@ public class SmallRat : MasterEnemy
     IEnumerator Slash()
     {
         canAttack = false;
-        scratchAnim.Play("Scratch");
         attackRange.SetActive(true);
         transform.Translate(0.03f * direction, 0, 0);
         yield return new WaitForSeconds(0.2f);

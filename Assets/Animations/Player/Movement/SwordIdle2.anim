@@ -21,11 +21,11 @@ AnimationClip:
   - curve:
     - time: 0
       value: {fileID: 7481599240187524991, guid: a0acd7b32644a1a4998fc67f53bb5665, type: 3}
-    - time: 0.5
+    - time: 0.25
       value: {fileID: 4223315119450790225, guid: faa2f7557c3918b41b9f7156a27192d2, type: 3}
-    - time: 0.51666665
+    - time: 0.26666668
       value: {fileID: 5721999564729443884, guid: faa2f7557c3918b41b9f7156a27192d2, type: 3}
-    - time: 0.53333336
+    - time: 0.28333333
       value: {fileID: 1497627728337831208, guid: a0acd7b32644a1a4998fc67f53bb5665, type: 3}
     attribute: m_Sprite
     path: 
@@ -55,7 +55,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.55
+    m_StopTime: 0.3
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -82,14 +82,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 1
     messageOptions: 0
-  - time: 0.5
+  - time: 0.25
     functionName: MoveRb
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: -0.1
     intParameter: 0
     messageOptions: 0
-  - time: 0.53333336
+  - time: 0.28333333
     functionName: MoveRb
     data: 
     objectReferenceParameter: {fileID: 0}
