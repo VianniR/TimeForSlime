@@ -20,20 +20,25 @@ public class GroundCheck : MonoBehaviour
     [SerializeField]
     float height;
 
+    Vector2 offset;
+
     void Start()
     {
         grid = GameObject.Find("Grid").GetComponent<GridLayout>();
         tilemap = grid.gameObject.transform.Find("Ground").gameObject.GetComponent<Tilemap>();
         width = referenceCollider.bounds.size.x;
         height = referenceCollider.bounds.size.y;
+        offset = referenceCollider.offset;
     }
 
 
     public string LeftWallCollision()
     {
-        Vector2 topPos = new Vector2(player.transform.position.x - width / 2 - 0.07f, player.transform.position.y + height / 2);
-        Vector2 midPos = new Vector2(player.transform.position.x - width / 2 - 0.07f, player.transform.position.y);
-        Vector2 botPos = new Vector2(player.transform.position.x - width / 2 - 0.07f, player.transform.position.y - height / 2);
+        float centerX = player.transform.position.x + offset.x;
+        float centerY = player.transform.position.y + offset.y;
+        Vector2 topPos = new Vector2(centerX - width / 2 - 0.07f, centerY + height / 2);
+        Vector2 midPos = new Vector2(centerX - width / 2 - 0.07f, centerY);
+        Vector2 botPos = new Vector2(centerX - width / 2 - 0.07f, centerY - height / 2);
 
         Collider2D bot = Physics2D.Linecast(player.transform.position, botPos, groundLayer).collider;
         Collider2D mid = Physics2D.Linecast(player.transform.position, midPos, groundLayer).collider;
@@ -60,9 +65,11 @@ public class GroundCheck : MonoBehaviour
 
     public string RightWallCollision()
     {
-        Vector2 topPos = new Vector2(player.transform.position.x + width / 2 + 0.07f, player.transform.position.y + height / 2);
-        Vector2 midPos = new Vector2(player.transform.position.x + width / 2 + 0.07f, player.transform.position.y);
-        Vector2 botPos = new Vector2(player.transform.position.x + width / 2 + 0.07f, player.transform.position.y - height / 2);
+        float centerX = player.transform.position.x + offset.x;
+        float centerY = player.transform.position.y + offset.y;
+        Vector2 topPos = new Vector2(centerX + width / 2 + 0.07f, centerY + height / 2);
+        Vector2 midPos = new Vector2(centerX + width / 2 + 0.07f, centerY);
+        Vector2 botPos = new Vector2(centerX + width / 2 + 0.07f, centerY - height / 2);
 
         Collider2D bot = Physics2D.Linecast(player.transform.position, botPos, groundLayer).collider;
         Collider2D mid = Physics2D.Linecast(player.transform.position, midPos, groundLayer).collider;
@@ -89,9 +96,11 @@ public class GroundCheck : MonoBehaviour
 
     public string GroundCollision()
     {
-        Vector2 rightPos = new Vector2(player.transform.position.x + width / 2, player.transform.position.y - height / 2 - 0.07f);
-        Vector2 midPos = new Vector2(player.transform.position.x, player.transform.position.y - height / 2 - 0.07f);
-        Vector2 leftPos = new Vector2(player.transform.position.x - width / 2, player.transform.position.y - height / 2 - 0.07f);
+        float centerX = player.transform.position.x + offset.x;
+        float centerY = player.transform.position.y + offset.y;
+        Vector2 rightPos = new Vector2(centerX + width / 2, centerY - height / 2 - 0.07f);
+        Vector2 midPos = new Vector2(centerX, centerY - height / 2 - 0.07f);
+        Vector2 leftPos = new Vector2(centerX - width / 2, centerY - height / 2 - 0.07f);
 
         Collider2D right = Physics2D.Linecast(player.transform.position, rightPos, groundLayer).collider;
         Collider2D mid = Physics2D.Linecast(player.transform.position, midPos, groundLayer).collider;
@@ -118,9 +127,11 @@ public class GroundCheck : MonoBehaviour
 
     public string CeilingCollision()
     {
-        Vector2 rightPos = new Vector2(player.transform.position.x + width / 2, player.transform.position.y + height / 2 + 0.07f);
-        Vector2 midPos = new Vector2(player.transform.position.x, player.transform.position.y + height / 2 + 0.07f);
-        Vector2 leftPos = new Vector2(player.transform.position.x - width / 2, player.transform.position.y + height / 2 + 0.07f);
+        float centerX = player.transform.position.x + offset.x;
+        float centerY = player.transform.position.y + offset.y;
+        Vector2 rightPos = new Vector2(centerX + width / 2, centerY + height / 2 + 0.07f);
+        Vector2 midPos = new Vector2(centerX, centerY + height / 2 + 0.07f);
+        Vector2 leftPos = new Vector2(centerX - width / 2, centerY + height / 2 + 0.07f);
 
         Collider2D right = Physics2D.Linecast(player.transform.position, rightPos, groundLayer).collider;
         Collider2D mid = Physics2D.Linecast(player.transform.position, midPos, groundLayer).collider;

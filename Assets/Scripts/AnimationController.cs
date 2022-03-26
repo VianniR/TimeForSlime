@@ -33,4 +33,9 @@ public class AnimationController : MonoBehaviour
     {
         currAnimationOverride = level;
     }
+
+    public Animator getAnimator()
+    {
+        return animator;
+    }
 }

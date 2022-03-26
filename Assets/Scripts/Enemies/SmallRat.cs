@@ -8,16 +8,19 @@ public class SmallRat : MasterEnemy
     public float runSpeed;
     public GameObject attackRange;
     public GameObject defaultKnockback;
+    public AnimationController ratAnim;
 
     private void Start()
     {
         base.Start();
         gameObject.layer = 8;
         canAttack = false;
+        ratAnim.PlayAnim("Walk", 1);
     }
     // Update is called once per frame
     void Update()
     {
+        ratAnim.getAnimator().SetBool("Angry", angered);
         if (!angered)
         {
             IdleWalk();

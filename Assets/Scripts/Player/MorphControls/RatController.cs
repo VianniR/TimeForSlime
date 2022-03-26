@@ -7,6 +7,7 @@ public class RatController : MasterController
     public GameObject attackCollider;
     bool canAttack;
     private float currSpeed;
+    public AnimationController ratAnim;
 
     // Start is called before the first frame update
     new void Start()
@@ -21,21 +22,31 @@ public class RatController : MasterController
     void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        if(!playerParent.stunned && canAttack)
+        if (!playerParent.stunned && canAttack)
+        {
             playerRb.velocity = new Vector2(horizontal * currSpeed, playerRb.velocity.y);
-        else if(!playerParent.stunned)
+            
+            if (horizontal == 0)
+            {
+                ratAnim.PlayAnim("Idle", 3);
+            }
+            else if (Input.GetKey(KeyCode.LeftShift))
+            {
+                currSpeed = speed * 1.5f;
+                ratAnim.getAnimator().SetBool("Angry", true);
+            }
+            else
+            {
+                currSpeed = speed;
+                ratAnim.getAnimator().SetBool("Angry", false);
+                ratAnim.PlayAnim("Walk", 2);
+            }
+        }
+        else if (!playerParent.stunned)
         {
             playerRb.velocity = Vector2.zero;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            currSpeed = speed * 1.5f;
-        }
-        else
-        {
-            currSpeed = speed;
-        }
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
