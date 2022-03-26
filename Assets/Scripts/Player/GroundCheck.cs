@@ -20,22 +20,19 @@ public class GroundCheck : MonoBehaviour
     [SerializeField]
     float height;
 
-    Vector2 offset;
-
     void Start()
     {
         grid = GameObject.Find("Grid").GetComponent<GridLayout>();
         tilemap = grid.gameObject.transform.Find("Ground").gameObject.GetComponent<Tilemap>();
         width = referenceCollider.bounds.size.x;
         height = referenceCollider.bounds.size.y;
-        offset = referenceCollider.offset;
     }
 
 
     public string LeftWallCollision()
     {
-        float centerX = player.transform.position.x + offset.x;
-        float centerY = player.transform.position.y + offset.y;
+        float centerX = referenceCollider.bounds.center.x;
+        float centerY = referenceCollider.bounds.center.y;
         Vector2 topPos = new Vector2(centerX - width / 2 - 0.07f, centerY + height / 2);
         Vector2 midPos = new Vector2(centerX - width / 2 - 0.07f, centerY);
         Vector2 botPos = new Vector2(centerX - width / 2 - 0.07f, centerY - height / 2);
@@ -65,8 +62,8 @@ public class GroundCheck : MonoBehaviour
 
     public string RightWallCollision()
     {
-        float centerX = player.transform.position.x + offset.x;
-        float centerY = player.transform.position.y + offset.y;
+        float centerX = referenceCollider.bounds.center.x;
+        float centerY = referenceCollider.bounds.center.y;
         Vector2 topPos = new Vector2(centerX + width / 2 + 0.07f, centerY + height / 2);
         Vector2 midPos = new Vector2(centerX + width / 2 + 0.07f, centerY);
         Vector2 botPos = new Vector2(centerX + width / 2 + 0.07f, centerY - height / 2);
@@ -96,8 +93,8 @@ public class GroundCheck : MonoBehaviour
 
     public string GroundCollision()
     {
-        float centerX = player.transform.position.x + offset.x;
-        float centerY = player.transform.position.y + offset.y;
+        float centerX = referenceCollider.bounds.center.x;
+        float centerY = referenceCollider.bounds.center.y;
         Vector2 rightPos = new Vector2(centerX + width / 2, centerY - height / 2 - 0.07f);
         Vector2 midPos = new Vector2(centerX, centerY - height / 2 - 0.07f);
         Vector2 leftPos = new Vector2(centerX - width / 2, centerY - height / 2 - 0.07f);
@@ -127,8 +124,8 @@ public class GroundCheck : MonoBehaviour
 
     public string CeilingCollision()
     {
-        float centerX = player.transform.position.x + offset.x;
-        float centerY = player.transform.position.y + offset.y;
+        float centerX = referenceCollider.bounds.center.x;
+        float centerY = referenceCollider.bounds.center.y;
         Vector2 rightPos = new Vector2(centerX + width / 2, centerY + height / 2 + 0.07f);
         Vector2 midPos = new Vector2(centerX, centerY + height / 2 + 0.07f);
         Vector2 leftPos = new Vector2(centerX - width / 2, centerY + height / 2 + 0.07f);

@@ -22,7 +22,7 @@ public class RatController : MasterController
     void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        if (!playerParent.stunned && canAttack)
+        if (!playerParent.stunned && !isAttacking)
         {
             playerRb.velocity = new Vector2(horizontal * currSpeed, playerRb.velocity.y);
             
@@ -34,6 +34,7 @@ public class RatController : MasterController
             {
                 currSpeed = speed * 1.5f;
                 ratAnim.getAnimator().SetBool("Angry", true);
+                ratAnim.PlayAnim("Run", 1);
             }
             else
             {
@@ -44,12 +45,14 @@ public class RatController : MasterController
         }
         else if (!playerParent.stunned)
         {
+            ratAnim.PlayAnim("Hurt", 3);
             playerRb.velocity = Vector2.zero;
         }
 
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
+            ratAnim.PlayAnim("RatAttack", 3);
             StartCoroutine(EnableAttackCollider());
         }
 
@@ -62,12 +65,15 @@ public class RatController : MasterController
     IEnumerator EnableAttackCollider()
     {
         canAttack = false;
+        isAttacking = true;
 
         playerParent.hitDirection = new Vector2(transform.localScale.x, 0);
 
+        yield return new WaitForSeconds(.25f);
         attackCollider.SetActive(true);
         yield return new WaitForSeconds(.25f);
         attackCollider.SetActive(false);
+        isAttacking = false;
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }

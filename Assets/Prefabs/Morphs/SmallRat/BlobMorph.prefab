@@ -196,9 +196,9 @@ MonoBehaviour:
   morphAnim: {fileID: 0}
   fallFactor: 0
   moveDirection: 0
-  gravity: 0
+  gravity: 12
   playerSprite: {fileID: 6393868692279646548}
-  attackCooldown: 0
+  attackCooldown: 0.5
   invincColor: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 0.7882353}
   attackCollider: {fileID: 5048432854698750445}
   ratAnim: {fileID: 1886869396920635354}

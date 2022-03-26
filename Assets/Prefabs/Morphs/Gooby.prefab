@@ -273,7 +273,7 @@ MonoBehaviour:
   moveDirection: 0
   gravity: 12
   playerSprite: {fileID: 5690913583970375228}
-  attackCooldown: 0.3
+  attackCooldown: 0.2
   invincColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 0.84313726}
   goobySprite: {fileID: 5646436244483164024}
   weapon: {fileID: 8514586689807600980}

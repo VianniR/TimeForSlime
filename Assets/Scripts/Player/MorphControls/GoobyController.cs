@@ -29,12 +29,8 @@ public class GoobyController : MasterController
     void Update()
     {
         morphAnim.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
-        if (!playerParent.stunned && !(swordDir == 2 && isAttacking))
+        if (!playerParent.stunned)
             MovePlayerStandard();
-        else
-        {
-            playerRb.velocity = new Vector2(0, playerRb.velocity.y);
-        }
 
         if (Input.GetKey(KeyCode.Mouse0) && !isAttacking && !playerParent.stunned)
         {
@@ -85,7 +81,7 @@ public class GoobyController : MasterController
             animController.PlayAnim("SwordThrust", 4);
         }
 
-
+        yield return new WaitForSeconds(.1f);
         swordCollider.SetActive(true);
         yield return new WaitForSeconds(.1f);
         swordCollider.SetActive(false);

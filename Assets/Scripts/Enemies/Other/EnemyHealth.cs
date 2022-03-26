@@ -25,6 +25,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if(health <= 0 && !isDead)
         {
+            isDead = true;
             StartCoroutine(Death());
         }
     }

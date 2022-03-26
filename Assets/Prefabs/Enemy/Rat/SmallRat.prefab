@@ -70,7 +70,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 3296308404937789323}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 5ea8069144f48604b9687110cc1ecdb9, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -149,13 +149,13 @@ MonoBehaviour:
   direction: 0
   idleSpeed: 3
   groundCheck: {fileID: 3296308404937789327}
-  stunTime: 0.1
+  stunTime: 0.3
   sightRadius: 10
   sightLayers:
     serializedVersion: 2
     m_Bits: 4672
   angered: 0
-  attackCooldown: 1
+  attackCooldown: 0.75
   runSpeed: 8
   attackRange: {fileID: 4532901116162952879}
   defaultKnockback: {fileID: 3296308404937789323}

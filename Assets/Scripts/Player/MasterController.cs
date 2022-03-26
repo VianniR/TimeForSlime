@@ -65,7 +65,8 @@ public class MasterController : MonoBehaviour
                 horizontal = Input.GetAxis("Horizontal") * 2;
             }
         }
-        playerRb.velocity = new Vector2(Mathf.Clamp(horizontal * speed, -speed, speed), playerRb.velocity.y);
+
+            playerRb.velocity = new Vector2(Mathf.Clamp(horizontal * speed, -speed, speed), playerRb.velocity.y);
 
         //Jumpingd
         if (isJumping)
