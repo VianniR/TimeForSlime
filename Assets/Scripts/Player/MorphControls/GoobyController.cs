@@ -12,31 +12,34 @@ public class GoobyController : MasterController
 
     private Camera cam;
     public GameObject swordCollider;
-    bool isAttacking;
     float swordUpTimer;
+    int swordDir;
+
+    public AnimationController weaponAnimContr;
 
     // Start is called before the first frame update
     new void Start()
     {
         base.Start();
-        isAttacking = false;
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
+        swordDir = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!playerParent.stunned)
+        morphAnim.SetFloat("Speed", Mathf.Abs(Input.GetAxisRaw("Horizontal")));
+        if (!playerParent.stunned)
             MovePlayerStandard();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !isAttacking && !playerParent.stunned)
+        if (Input.GetKey(KeyCode.Mouse0) && !isAttacking && !playerParent.stunned)
         {
             Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             float angle = Mathf.Atan2(mousePos.y, mousePos.x);
             StartCoroutine(EnableCollider(angle));
         }
 
-        if (playerRb.velocity.x != 0 && !swordCollider.activeSelf)
+        if (playerRb.velocity.x != 0 && !isAttacking)
         {
             goobySprite.localScale = new Vector3(initWidth * moveDirection, goobySprite.localScale.y, 1f);
         }
@@ -48,33 +51,47 @@ public class GoobyController : MasterController
         }
         else if(swordUpTimer > -1)
         {
-            weapon.transform.localScale = new Vector3(weapon.transform.localScale.x, 1f, 1f);
+            swordDir = 0;
             swordUpTimer = -2;
         }
     }
 
     IEnumerator EnableCollider(float angle)
     {
-        swordUpTimer = attackCooldown + 0.4f;
+        swordUpTimer = 0.75f;
         isAttacking = true;
         if (angle < 0)
             angle += (2 * Mathf.PI);
 
 
         playerParent.hitDirection = new Vector2(goobySprite.localScale.x, 0);
-        
-        weaponAnim.Play("Swing");
 
+        if (swordDir == 0)
+        {
+            animController.PlayAnim("SwordDown", 2);
+            weaponAnimContr.PlayAnim("SwordDown", 2);
+        }
+        else if (swordDir == 1)
+        {
+            animController.PlayAnim("SwordUp", 2);
+            weaponAnimContr.PlayAnim("SwordUp", 2);
+        }
+        else
+        {
+            animController.PlayAnim("SwordThrust", 4);
+        }
 
+        yield return new WaitForSeconds(.1f);
         swordCollider.SetActive(true);
         yield return new WaitForSeconds(.1f);
         swordCollider.SetActive(false);
         yield return new WaitForSeconds(attackCooldown);
-        isAttacking = false;
 
-        if(swordUpTimer > 0)
-        {
-            weapon.transform.localScale = new Vector3(weapon.transform.localScale.x, -weapon.transform.localScale.y, 1f);
-        }
+        swordDir++;
+        if (swordDir > 2)
+            swordDir = 0;
+
+        isAttacking = false;
+        goobySprite.localScale = new Vector3(initWidth * moveDirection, goobySprite.localScale.y, 1f);
     }
 }

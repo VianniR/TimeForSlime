@@ -184,6 +184,10 @@ public class PlayerController : MonoBehaviour
     public void Hit(Vector2 force, int damage, float stunTimer)
     {
         UpdateSlime(-damage);
+        if(damage > 0)
+        {
+            StartCoroutine(SlowTime());
+        }
         StartCoroutine(Knockback(force, stunTimer));
         if(damage != 0)
             StartCoroutine(currMorphController.Invincible());
@@ -195,5 +199,12 @@ public class PlayerController : MonoBehaviour
         playerRb.velocity = force;
         yield return new WaitForSeconds(stunTimer);
         stunned = false;
+    }
+
+    public IEnumerator SlowTime()
+    {
+        Time.timeScale = 0.1f;
+        yield return new WaitForSeconds(0.01f);
+        Time.timeScale = 1;
     }
 }

@@ -32,15 +32,18 @@ public class MasterController : MonoBehaviour
     public float attackCooldown;
     protected float initWidth;
 
+    protected bool isAttacking;
+
     // Start is called before the first frame update
     public void Start()
     {
         moveDirection = 1;
         playerRb = transform.parent.GetComponent<Rigidbody2D>();
         collisionCheckScript = groundCheckers.gameObject.GetComponent<GroundCheck>();
-        animController = new AnimationController(morphAnim, "Idle");
         initWidth = transform.localScale.x;
         playerParent = transform.parent.GetComponent<PlayerController>();
+        animController = GetComponent<AnimationController>();
+        isAttacking = false;
     }
 
     public void MovePlayerStandard()
@@ -62,7 +65,8 @@ public class MasterController : MonoBehaviour
                 horizontal = Input.GetAxis("Horizontal") * 2;
             }
         }
-        playerRb.velocity = new Vector2(Mathf.Clamp(horizontal * speed, -speed, speed), playerRb.velocity.y);
+
+            playerRb.velocity = new Vector2(Mathf.Clamp(horizontal * speed, -speed, speed), playerRb.velocity.y);
 
         //Jumpingd
         if (isJumping)
@@ -85,12 +89,8 @@ public class MasterController : MonoBehaviour
         //Movement
         if (!Mathf.Approximately(playerRb.velocity.x, 0.0f))
         {
-            animController.PlayAnim("Run", 1);
+            animController.PlayAnim("Run", 2);
             moveDirection = (int)Mathf.Sign(playerRb.velocity.x);
-        }
-        else
-        {
-            animController.PlayAnim("Idle", 2);
         }
 
         if (Input.GetKey(KeyCode.Space) && onGround && !isJumping)
@@ -199,5 +199,11 @@ public class MasterController : MonoBehaviour
         playerSprite.color = new Color(255, 255, 255, 1);
         yield return new WaitForSeconds(0.3f);
         gameObject.layer = 9;
+    }
+
+    public void MoveRb(float x)
+    {
+        if(Mathf.Approximately(playerRb.velocity.x, 0))
+        playerRb.position += new Vector2(x * moveDirection, 0);
     }
 }

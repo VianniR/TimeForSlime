@@ -65,4 +65,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: SetPriorityLevel
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: 9fad5519d1712934f912aba4f44c7c92, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

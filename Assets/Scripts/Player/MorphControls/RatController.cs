@@ -7,6 +7,7 @@ public class RatController : MasterController
     public GameObject attackCollider;
     bool canAttack;
     private float currSpeed;
+    public AnimationController ratAnim;
 
     // Start is called before the first frame update
     new void Start()
@@ -14,45 +15,65 @@ public class RatController : MasterController
         base.Start();
         //animController = new AnimationController(blobAnim, "Idle");
         currSpeed = speed;
+        canAttack = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
-        if(!playerParent.stunned && canAttack)
-            playerRb.velocity = new Vector2(horizontal * currSpeed, playerRb.velocity.y);
-        else if(!playerParent.stunned)
+        if (!playerParent.stunned && !isAttacking)
         {
+            playerRb.velocity = new Vector2(horizontal * currSpeed, playerRb.velocity.y);
+            
+            if (horizontal == 0)
+            {
+                ratAnim.PlayAnim("Idle", 3);
+            }
+            else if (Input.GetKey(KeyCode.LeftShift))
+            {
+                currSpeed = speed * 1.5f;
+                ratAnim.getAnimator().SetBool("Angry", true);
+                ratAnim.PlayAnim("Run", 1);
+            }
+            else
+            {
+                currSpeed = speed;
+                ratAnim.getAnimator().SetBool("Angry", false);
+                ratAnim.PlayAnim("Walk", 2);
+            }
+        }
+        else if (!playerParent.stunned)
+        {
+            ratAnim.PlayAnim("Hurt", 3);
             playerRb.velocity = Vector2.zero;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            currSpeed = speed * 1.5f;
-        }
-        else
-        {
-            currSpeed = speed;
-        }
 
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
+            ratAnim.PlayAnim("RatAttack", 3);
             StartCoroutine(EnableAttackCollider());
+        }
+
+        if (playerRb.velocity.x != 0)
+        {
+            transform.localScale = new Vector3(initWidth * Mathf.Sign(playerRb.velocity.x), transform.localScale.y, 1f);
         }
     }
 
     IEnumerator EnableAttackCollider()
     {
         canAttack = false;
+        isAttacking = true;
 
         playerParent.hitDirection = new Vector2(transform.localScale.x, 0);
 
-        //weaponAnim.Play("Swing");
-
+        yield return new WaitForSeconds(.25f);
         attackCollider.SetActive(true);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.25f);
         attackCollider.SetActive(false);
+        isAttacking = false;
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }
