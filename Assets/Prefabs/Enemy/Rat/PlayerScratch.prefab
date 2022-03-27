@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3753920331954717311}
   - component: {fileID: 1589817000836012485}
   m_Layer: 0
-  m_Name: Sprite
+  m_Name: PlayerScratch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 6151918978170855073, guid: 40260d05aef4f004d8c9b434a60e0daa, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.039124012, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -24,7 +24,6 @@ public class MasterController : MonoBehaviour
     public float fallFactor;
     protected AnimationController animController;
 
-    public int moveDirection;
     private bool isJumping;
     public float gravity;
     public SpriteRenderer playerSprite;
@@ -37,7 +36,6 @@ public class MasterController : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        moveDirection = 1;
         playerRb = transform.parent.GetComponent<Rigidbody2D>();
         collisionCheckScript = groundCheckers.gameObject.GetComponent<GroundCheck>();
         initWidth = transform.localScale.x;
@@ -85,12 +83,16 @@ public class MasterController : MonoBehaviour
             }
         }
 
-       
+        if (horizontal != 0 && !isAttacking && !playerParent.stunned)
+        {
+            playerParent.SetDirection((int)Mathf.Sign(horizontal));
+        }
+
+
         //Movement
         if (!Mathf.Approximately(playerRb.velocity.x, 0.0f))
         {
             animController.PlayAnim("Run", 2);
-            moveDirection = (int)Mathf.Sign(playerRb.velocity.x);
         }
 
         if (Input.GetKey(KeyCode.Space) && onGround && !isJumping)
@@ -204,6 +206,6 @@ public class MasterController : MonoBehaviour
     public void MoveRb(float x)
     {
         if(Mathf.Approximately(playerRb.velocity.x, 0))
-        playerRb.position += new Vector2(x * moveDirection, 0);
+        playerRb.position += new Vector2(x * playerParent.moveDirection, 0);
     }
 }

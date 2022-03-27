@@ -20,8 +20,7 @@ public class SnakeController : MasterController
         playerRb.velocity = new Vector2(horizontal * speed, playerRb.velocity.y);
         if (playerRb.velocity.x != 0)
         {
-            transform.localScale = new Vector3(initWidth * moveDirection, transform.localScale.y, 1f);
-            moveDirection = (int)Mathf.Sign(playerRb.velocity.x);
+            playerParent.SetDirection((int)Mathf.Sign(playerRb.velocity.x));
         }
 
         if (canAttack && Input.GetKeyDown(KeyCode.Mouse0))
@@ -35,7 +34,7 @@ public class SnakeController : MasterController
         GameObject proj = Instantiate(poisonProjectile, transform.position, poisonProjectile.transform.rotation);
         proj.tag = "PlayerWeapon";
         proj.layer = 8;
-        proj.GetComponent<Rigidbody2D>().velocity = new Vector2(moveDirection * projectileSpeed, 5f);
+        proj.GetComponent<Rigidbody2D>().velocity = new Vector2(playerParent.moveDirection * projectileSpeed, 5f);
         yield return new WaitForSeconds(attackCooldown);
         canAttack = true;
     }

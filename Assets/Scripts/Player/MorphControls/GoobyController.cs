@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class GoobyController : MasterController
 {
-
-    public Transform goobySprite;
     public Transform weapon;
 
     public Animator weaponAnim;
@@ -39,11 +37,6 @@ public class GoobyController : MasterController
             StartCoroutine(EnableCollider(angle));
         }
 
-        if (playerRb.velocity.x != 0 && !isAttacking)
-        {
-            goobySprite.localScale = new Vector3(initWidth * moveDirection, goobySprite.localScale.y, 1f);
-        }
-
         
         if(swordUpTimer > 0)
         {
@@ -64,7 +57,7 @@ public class GoobyController : MasterController
             angle += (2 * Mathf.PI);
 
 
-        playerParent.hitDirection = new Vector2(goobySprite.localScale.x, 0);
+        playerParent.hitDirection = new Vector2(playerParent.moveDirection, 0);
 
         if (swordDir == 0)
         {
@@ -92,6 +85,5 @@ public class GoobyController : MasterController
             swordDir = 0;
 
         isAttacking = false;
-        goobySprite.localScale = new Vector3(initWidth * moveDirection, goobySprite.localScale.y, 1f);
     }
 }

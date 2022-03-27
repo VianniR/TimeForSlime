@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Enemy
-  hitFX: {fileID: 9190341873095961714, guid: 0ef29be2fc725af41bf3c137b358dc09, type: 3}
+  hitFX: {fileID: 9190341873095961714, guid: fa03fa991f9e5814d9b4c38ee481c3f2, type: 3}
   thisTransform: {fileID: 6393868692279646547}
 --- !u!1 &6393868692279646552
 GameObject:
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4548083451646019626, guid: 65081a54518665b48b7faf13ec6e0c6b, type: 3}
+  m_Sprite: {fileID: 909548338378064033, guid: dbf673caf3103a2439b811d674b4e6e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -195,13 +195,13 @@ MonoBehaviour:
   groundCheckers: {fileID: 6393868692279646547}
   morphAnim: {fileID: 0}
   fallFactor: 0
-  moveDirection: 0
   gravity: 12
   playerSprite: {fileID: 6393868692279646548}
   attackCooldown: 0.5
   invincColor: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 0.7882353}
   attackCollider: {fileID: 5048432854698750445}
   ratAnim: {fileID: 1886869396920635354}
+  scratchFX: {fileID: 3748226186708282190}
 --- !u!114 &5208675261075183750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +257,7 @@ Animator:
   m_GameObject: {fileID: 6393868692279646552}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e1ffb60c34f7e5042b76f9cee1bf4e7a, type: 2}
+  m_Controller: {fileID: 22100000, guid: eef95b056265b93499dde6743e652085, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

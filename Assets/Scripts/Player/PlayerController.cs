@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour
     public Vector2 hitDirection;
     public bool stunned;
 
+    public int moveDirection;
+
     //public GameObject particleEmitterObject;
 
 
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        moveDirection = 1;
         //jumpParticle = particleEmitterObject.GetComponent<ParticleSystem>();
         slimeBar = emptySlimeBar.GetChild(0);
         playerRb = GetComponent<Rigidbody2D>();
@@ -206,5 +209,11 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0.1f;
         yield return new WaitForSeconds(0.01f);
         Time.timeScale = 1;
+    }
+
+    public void SetDirection(int newDir)
+    {
+        moveDirection = newDir;
+        transform.localScale = new Vector3(moveDirection, transform.localScale.y, transform.localScale.z);
     }
 }
