@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8641664712917346944}
   - component: {fileID: 48393371468561522}
   - component: {fileID: 357590091681815194}
+  - component: {fileID: 1857712104107109438}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Untagged
@@ -104,6 +105,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1857712104107109438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038065354466600128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1998dbe2356703f4da21a818f95932ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2400464399169385126
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,7 +368,7 @@ MonoBehaviour:
   events:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6512493872365500312}
+      - m_Target: {fileID: 1857712104107109438}
         m_TargetAssemblyTypeName: SnakeGame, Assembly-CSharp
         m_MethodName: SpawnSnake
         m_Mode: 2
@@ -390,7 +403,6 @@ GameObject:
   - component: {fileID: 7590970534506747113}
   - component: {fileID: 52819475866039769}
   - component: {fileID: 2522736836276945153}
-  - component: {fileID: 6512493872365500312}
   m_Layer: 0
   m_Name: Entrance
   m_TagString: Untagged
@@ -452,19 +464,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enabledObject: {fileID: 3231558856786489744}
---- !u!114 &6512493872365500312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6759137301834049063}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1998dbe2356703f4da21a818f95932ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  snake: {fileID: 2038065354466600128}
 --- !u!1 &8106579492533200131
 GameObject:
   m_ObjectHideFlags: 0
