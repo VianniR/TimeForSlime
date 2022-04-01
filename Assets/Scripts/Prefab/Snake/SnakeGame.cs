@@ -15,11 +15,12 @@ public class SnakeGame : MonoBehaviour
 
     Vector3Int tilemapPos;
     Vector3Int prevTilemapPos;
+
+    Vector3 lastEntrance = new Vector2(0, 0);
     // Start is called before the first frame update
     void Awake()
     {
         player = GameObject.Find("Player");
-        direction = Vector2.zero;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -54,21 +55,67 @@ public class SnakeGame : MonoBehaviour
         rb.velocity = speed * direction;
         if(!prevTilemapPos.Equals(tilemapPos))
         {
-            Instantiate(snake, CellToRealWorld(tilemapPos), snake.transform.rotation);
+            float cosTheta = (direction.x + 1);
+            float sinTheta = (direction.y + direction.x * (direction.x - 1));
+            Instantiate(snake, CellToRealWorld(tilemapPos), new Quaternion(0, 0, sinTheta, cosTheta));
         }
+
+        if (xInput != 0 || yInput != 0)
+            timer = -2;
         prevTilemapPos = tilemapPos;
     }
 
     public void SpawnSnake(Transform entrance)
     {
         gameObject.SetActive(true);
+        lastEntrance = player.transform.position;
         player.SetActive(false);
         transform.position = entrance.position;
-        Instantiate(snake, entrance.position, new Quaternion(direction.x, direction.y, 0, 0));
+        Instantiate(snake, entrance.position, snake.transform.rotation);
+    }
+
+    public void SetDirection(float angle)
+    {
+        direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+        transform.position = CellToRealWorld(tilemapPos);
     }
 
     Vector3 CellToRealWorld(Vector3Int pos)
     {
         return grid.CellToWorld(pos) + new Vector3(0.25f, 0.25f, 0);
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("SnakeExit"))
+        {
+            gameObject.SetActive(false);
+            player.SetActive(true);
+        }
+    }
+    float timer = -2;
+    public void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            direction = Vector2.zero;
+            if (timer < 0)
+                timer = 0.5f;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if(timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else if(timer > -1)
+        {
+            gameObject.SetActive(false);
+            player.SetActive(true);
+            player.transform.position = lastEntrance;
+            timer = -2;
+        }
     }
 }

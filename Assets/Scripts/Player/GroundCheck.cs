@@ -10,8 +10,6 @@ public class GroundCheck : MonoBehaviour
 
 
     public LayerMask groundLayer;
-    private GridLayout grid;
-    private Tilemap tilemap;
 
     public Collider2D referenceCollider;
 
@@ -22,8 +20,6 @@ public class GroundCheck : MonoBehaviour
 
     void Start()
     {
-        grid = GameObject.Find("Grid").GetComponent<GridLayout>();
-        tilemap = grid.gameObject.transform.Find("Ground").gameObject.GetComponent<Tilemap>();
         width = referenceCollider.bounds.size.x;
         height = referenceCollider.bounds.size.y;
     }
@@ -41,20 +37,17 @@ public class GroundCheck : MonoBehaviour
         Collider2D mid = Physics2D.Linecast(player.transform.position, midPos, groundLayer).collider;
         Collider2D top = Physics2D.Linecast(player.transform.position, topPos, groundLayer).collider;
 
-        if(mid != null)
+        if (mid != null)
         {
-            Vector3Int cellPos = grid.WorldToCell(midPos);
-            return tilemap.GetSprite(cellPos).name;
+            return GetTile(mid, midPos);
         }
         else if (bot != null)
         {
-            Vector3Int cellPos = grid.WorldToCell(botPos);
-            return tilemap.GetSprite(cellPos).name;
+            return GetTile(bot, botPos);
         }
         else if (top != null)
         {
-            Vector3Int cellPos = grid.WorldToCell(topPos);
-            return tilemap.GetSprite(cellPos).name;
+            return GetTile(top, topPos);
         }
 
         return "";
@@ -74,18 +67,15 @@ public class GroundCheck : MonoBehaviour
 
         if (mid != null)
         {
-            Vector3Int cellPos = grid.WorldToCell(midPos);
-            return tilemap.GetSprite(cellPos).name;
+            return GetTile(mid, midPos);
         }
         else if (bot != null)
         {
-            Vector3Int cellPos = grid.WorldToCell(botPos);
-            return tilemap.GetSprite(cellPos).name;
+            return GetTile(bot, botPos);
         }
         else if (top != null)
         {
-            Vector3Int cellPos = grid.WorldToCell(topPos);
-            return tilemap.GetSprite(cellPos).name;
+            return GetTile(top, topPos);
         }
 
         return "";
@@ -105,18 +95,15 @@ public class GroundCheck : MonoBehaviour
 
         if (mid != null)
         {
-            Vector3Int cellPos = grid.WorldToCell(midPos);
-            return tilemap.GetSprite(cellPos).name;
+            return GetTile(mid, midPos);
         }
         else if (left != null)
         {
-            Vector3Int cellPos = grid.WorldToCell(leftPos);
-            return tilemap.GetSprite(cellPos).name;
+            return GetTile(left, leftPos);
         }
         else if (right != null)
         {
-            Vector3Int cellPos = grid.WorldToCell(rightPos);
-            return tilemap.GetSprite(cellPos).name;
+            return GetTile(right, rightPos);
         }
 
         return "";
@@ -136,20 +123,25 @@ public class GroundCheck : MonoBehaviour
 
         if (mid != null)
         {
-            Vector3Int cellPos = grid.WorldToCell(midPos);
-            return tilemap.GetSprite(cellPos).name;
+            return GetTile(mid, midPos);
         }
         else if (left != null)
         {
-            Vector3Int cellPos = grid.WorldToCell(leftPos);
-            return tilemap.GetSprite(cellPos).name;
+            return GetTile(left, leftPos);
         }
         else if (right != null)
         {
-            Vector3Int cellPos = grid.WorldToCell(rightPos);
-            return tilemap.GetSprite(cellPos).name;
+            return GetTile(right, rightPos);
         }
 
         return "";
+    }
+
+    public string GetTile(Collider2D collision, Vector2 collisionPos)
+    {
+        Tilemap tilemap = collision.GetComponent<Tilemap>();
+        GridLayout grid = tilemap.transform.parent.gameObject.GetComponent<GridLayout>();
+        Vector3Int cellPos = grid.WorldToCell(collisionPos);
+        return tilemap.GetSprite(cellPos).name;
     }
 }
