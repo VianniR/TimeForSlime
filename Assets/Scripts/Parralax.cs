@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Parralax : MonoBehaviour
 {
-    private float length, startpos;
+    private float startpos;
     public GameObject cam;
     public float parallaxEffect;
 
@@ -12,7 +12,7 @@ public class Parralax : MonoBehaviour
     void Start()
     {
         startpos = transform.position.x;
-        length = GetComponent<SpriteRenderer>().bounds.size.x;
+
     }
 
     // Update is called once per frame
