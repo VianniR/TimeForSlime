@@ -35,7 +35,7 @@ public class MasterEnemy : MonoBehaviour
         canAttack = false;
         unanger = new Task(CannotSeePlayer());
         onGround = true;
-        direction = 1;
+        //direction = 1;
         player = GameObject.Find("Player").transform;
         initWidth = transform.localScale.x;
     }
