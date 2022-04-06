@@ -18,18 +18,19 @@ public class SnakeGame : MonoBehaviour
 
     Vector3 lastEntrance = new Vector2(0, 0);
 
-    public GameObject currSnakeTile;
+    public List<GameObject> snakeTiles;
+
     // Start is called before the first frame update
     void Awake()
     {
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
+        snakeTiles = new List<GameObject>()
     }
 
     // Update is called once per frame
     void Update()
     {
-        tilemapPos = grid.WorldToCell(transform.position);
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
         player.transform.position = transform.position;
@@ -60,11 +61,13 @@ public class SnakeGame : MonoBehaviour
         if(timer < 0)
             rb.velocity = speed * direction;
 
+        tilemapPos = grid.WorldToCell(transform.position);
         if (!prevTilemapPos.Equals(tilemapPos))
         {
             float cosTheta = (direction.x + 1);
             float sinTheta = (direction.y + direction.x * (direction.x - 1));
-            currSnakeTile = Instantiate(snake, CellToRealWorld(tilemapPos), new Quaternion(0, 0, sinTheta, cosTheta));
+            GameObject newSnake = Instantiate(snake, CellToRealWorld(tilemapPos), new Quaternion(0, 0, sinTheta, cosTheta));
+            snakeTiles.Add(newSnake);
         }
 
         if (xInput != 0 || yInput != 0)
@@ -74,14 +77,14 @@ public class SnakeGame : MonoBehaviour
 
     public void CreateBend(Vector2 prevDir, Vector2 newDir)
     {
-        float side = (Vector3.Cross(prevDir, newDir)).z;
+        float turnDir = (Vector3.Cross(prevDir, newDir)).z;
         float cosTheta = (prevDir.x + 1);
         float sinTheta = (prevDir.y + prevDir.x * (prevDir.x - 1));
-        GameObject newBend = Instantiate(snake, currSnakeTile.transform.position, new Quaternion(0, 0, sinTheta, cosTheta));
-        newBend.transform.localScale = new Vector3(-1, side, 1) * 0.5f;
+        GameObject newBend = Instantiate(snake, snakeTiles[snakeTiles.Count - 1].transform.position, new Quaternion(0, 0, sinTheta, cosTheta));
+        newBend.transform.localScale = new Vector3(-1, turnDir, 1) * 0.5f;
         newBend.GetComponent<Animator>().Play("Bend");
-        Destroy(currSnakeTile);
-        currSnakeTile = newBend;
+        Destroy(snakeTiles[snakeTiles.Count - 1]);
+        snakeTiles.Add(newBend);
     }
 
     public void SpawnSnake(Transform entrance)
@@ -90,7 +93,7 @@ public class SnakeGame : MonoBehaviour
         lastEntrance = player.transform.position;
         player.SetActive(false);
         transform.position = entrance.position;
-        Instantiate(snake, entrance.position, snake.transform.rotation);
+        snakeTiles.Add(Instantiate(snake, entrance.position, snake.transform.rotation));
     }
 
     public void SetDirection(float angle)
