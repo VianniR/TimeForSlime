@@ -25,7 +25,7 @@ public class SnakeGame : MonoBehaviour
     {
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
-        snakeTiles = new List<GameObject>()
+        snakeTiles = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -67,6 +67,7 @@ public class SnakeGame : MonoBehaviour
             float cosTheta = (direction.x + 1);
             float sinTheta = (direction.y + direction.x * (direction.x - 1));
             GameObject newSnake = Instantiate(snake, CellToRealWorld(tilemapPos), new Quaternion(0, 0, sinTheta, cosTheta));
+            newSnake.GetComponent<SnakeTail>().SetVars(this, timer, false);
             snakeTiles.Add(newSnake);
         }
 
@@ -83,6 +84,7 @@ public class SnakeGame : MonoBehaviour
         GameObject newBend = Instantiate(snake, snakeTiles[snakeTiles.Count - 1].transform.position, new Quaternion(0, 0, sinTheta, cosTheta));
         newBend.transform.localScale = new Vector3(-1, turnDir, 1) * 0.5f;
         newBend.GetComponent<Animator>().Play("Bend");
+        newBend.GetComponent<SnakeTail>().SetVars(this, timer, false);
         Destroy(snakeTiles[snakeTiles.Count - 1]);
         snakeTiles.Add(newBend);
     }
