@@ -17,52 +17,78 @@ public class SnakeGame : MonoBehaviour
     Vector3Int prevTilemapPos;
 
     Vector3 lastEntrance = new Vector2(0, 0);
+
+    public List<GameObject> snakeTiles;
+
+    float snakeLength = -2;
+    bool hitWall;
+
     // Start is called before the first frame update
     void Awake()
     {
         player = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
+        snakeTiles = new List<GameObject>();
+        hitWall = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        tilemapPos = grid.WorldToCell(transform.position);
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
         player.transform.position = transform.position;
         if (xInput == 1 && !direction.Equals(Vector2.right))
         {
+            CreateBend(direction, Vector2.right);
             direction = Vector2.right;
             transform.position = CellToRealWorld(tilemapPos);
         }
         else if (xInput == -1 && !direction.Equals(Vector2.left))
         {
+            CreateBend(direction, Vector2.left);
             direction = Vector2.left;
             transform.position = CellToRealWorld(tilemapPos);
         }
         else if (yInput == 1 && !direction.Equals(Vector2.up))
         {
+            CreateBend(direction, Vector2.up);
             direction = Vector2.up;
             transform.position = CellToRealWorld(tilemapPos);
         }
         else if (yInput == -1 && !direction.Equals(Vector2.down))
         {
+            CreateBend(direction, Vector2.down);
             direction = Vector2.down;
             transform.position = CellToRealWorld(tilemapPos);
         }
+        if(snakeLength > 0)
+            rb.velocity = speed * direction;
 
-        rb.velocity = speed * direction;
-        if(!prevTilemapPos.Equals(tilemapPos))
+        tilemapPos = grid.WorldToCell(transform.position);
+        if (!prevTilemapPos.Equals(tilemapPos))
         {
             float cosTheta = (direction.x + 1);
             float sinTheta = (direction.y + direction.x * (direction.x - 1));
-            Instantiate(snake, CellToRealWorld(tilemapPos), new Quaternion(0, 0, sinTheta, cosTheta));
+            GameObject newSnake = Instantiate(snake, CellToRealWorld(tilemapPos), new Quaternion(0, 0, sinTheta, cosTheta));
+            newSnake.GetComponent<SnakeTail>().SetVars(this, snakeLength, false, direction);
+            snakeTiles.Add(newSnake);
         }
 
-        if (xInput != 0 || yInput != 0)
-            timer = -2;
         prevTilemapPos = tilemapPos;
+    }
+
+    public void CreateBend(Vector2 prevDir, Vector2 newDir)
+    {
+        float turnDir = (Vector3.Cross(prevDir, newDir)).z;
+        float cosTheta = (prevDir.x + 1);
+        float sinTheta = (prevDir.y + prevDir.x * (prevDir.x - 1));
+        GameObject newBend = Instantiate(snake, snakeTiles[snakeTiles.Count - 1].transform.position, new Quaternion(0, 0, sinTheta, cosTheta));
+        newBend.transform.localScale = new Vector3(-1, turnDir, 1) * 0.5f;
+        newBend.GetComponent<Animator>().Play("Bend");
+        newBend.GetComponent<SnakeTail>().SetVars(this, snakeLength, true, direction);
+        Destroy(snakeTiles[snakeTiles.Count - 1]);
+        snakeTiles.Add(newBend);
     }
 
     public void SpawnSnake(Transform entrance)
@@ -71,7 +97,8 @@ public class SnakeGame : MonoBehaviour
         lastEntrance = player.transform.position;
         player.SetActive(false);
         transform.position = entrance.position;
-        Instantiate(snake, entrance.position, snake.transform.rotation);
+        snakeTiles.Add(Instantiate(snake, entrance.position, snake.transform.rotation));
+        snakeLength = 0.2f;
     }
 
     public void SetDirection(float angle)
@@ -93,29 +120,22 @@ public class SnakeGame : MonoBehaviour
             player.SetActive(true);
         }
     }
-    float timer = -2;
     public void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            direction = Vector2.zero;
-            if (timer < 0)
-                timer = 0.5f;
+            snakeLength -= Time.deltaTime;
         }
     }
 
     private void FixedUpdate()
     {
-        if(timer > 0)
-        {
-            timer -= Time.deltaTime;
-        }
-        else if(timer > -1)
+        if(snakeLength < 0.1f && snakeLength > -1)
         {
             gameObject.SetActive(false);
             player.SetActive(true);
             player.transform.position = lastEntrance;
-            timer = -2;
+            snakeLength = -2;
         }
     }
 }
