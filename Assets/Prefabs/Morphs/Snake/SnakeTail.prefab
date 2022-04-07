@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snakeAnim: {fileID: 7927725772613917562}
   bend: 0
+  lookDirection: {x: 0, y: 0}
 --- !u!95 &7927725772613917562
 Animator:
   serializedVersion: 3

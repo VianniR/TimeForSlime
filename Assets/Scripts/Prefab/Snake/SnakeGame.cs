@@ -68,10 +68,7 @@ public class SnakeGame : MonoBehaviour
         tilemapPos = grid.WorldToCell(transform.position);
         if (!prevTilemapPos.Equals(tilemapPos))
         {
-            float cosTheta = (direction.x + 1);
-            float sinTheta = (direction.y + direction.x * (direction.x - 1));
-            GameObject newSnake = Instantiate(snake, CellToRealWorld(tilemapPos), new Quaternion(0, 0, sinTheta, cosTheta));
-            newSnake.GetComponent<SnakeTail>().SetVars(this, snakeLength, false, direction);
+            GameObject newSnake = SpawnNewTail(CellToRealWorld(tilemapPos), false, direction);
             snakeTiles.Add(newSnake);
         }
 
@@ -80,15 +77,31 @@ public class SnakeGame : MonoBehaviour
 
     public void CreateBend(Vector2 prevDir, Vector2 newDir)
     {
-        float turnDir = (Vector3.Cross(prevDir, newDir)).z;
-        float cosTheta = (prevDir.x + 1);
-        float sinTheta = (prevDir.y + prevDir.x * (prevDir.x - 1));
-        GameObject newBend = Instantiate(snake, snakeTiles[snakeTiles.Count - 1].transform.position, new Quaternion(0, 0, sinTheta, cosTheta));
-        newBend.transform.localScale = new Vector3(-1, turnDir, 1) * 0.5f;
-        newBend.GetComponent<Animator>().Play("Bend");
-        newBend.GetComponent<SnakeTail>().SetVars(this, snakeLength, true, direction);
+        GameObject newBend;
+        if (!hitWall)
+        {
+            float turnDir = (Vector3.Cross(prevDir, newDir)).z;
+            newBend = SpawnNewTail(snakeTiles[snakeTiles.Count - 1].transform.position, true, prevDir);
+            newBend.transform.localScale = new Vector3(-1, turnDir, 1) * 0.5f;
+            newBend.GetComponent<Animator>().Play("Bend");
+            newBend.GetComponent<SnakeTail>().SetVars(this, snakeLength, true, direction);
+        }
+        else
+        {
+            newBend = SpawnNewTail(snakeTiles[snakeTiles.Count - 1].transform.position, false, newDir);
+            newBend.GetComponent<SnakeTail>().SetVars(this, snakeLength, false, direction);
+        }
         Destroy(snakeTiles[snakeTiles.Count - 1]);
         snakeTiles.Add(newBend);
+    }
+
+    public GameObject SpawnNewTail(Vector3 position, bool bend, Vector2 tailDirection)
+    {
+        float cosTheta = (tailDirection.x + 1);
+        float sinTheta = (tailDirection.y + tailDirection.x * (tailDirection.x - 1));
+        GameObject newTail = Instantiate(snake, CellToRealWorld(tilemapPos), new Quaternion(0, 0, sinTheta, cosTheta));
+        newTail.GetComponent<SnakeTail>().SetVars(this, snakeLength, bend, tailDirection);
+        return newTail;
     }
 
     public void SpawnSnake(Transform entrance)
@@ -125,6 +138,14 @@ public class SnakeGame : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             snakeLength -= Time.deltaTime;
+            hitWall = true;
+        }
+    }
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            hitWall = false;
         }
     }
 
