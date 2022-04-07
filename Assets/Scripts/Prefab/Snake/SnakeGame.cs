@@ -78,7 +78,7 @@ public class SnakeGame : MonoBehaviour
     public void CreateBend(Vector2 prevDir, Vector2 newDir)
     {
         GameObject newBend;
-        if (!hitWall)
+        if (!hitWall || !snakeTiles[snakeTiles.Count - 1].GetComponent<SnakeTail>().bend)
         {
             float turnDir = (Vector3.Cross(prevDir, newDir)).z;
             newBend = SpawnNewTail(snakeTiles[snakeTiles.Count - 1].transform.position, true, prevDir);
@@ -91,6 +91,7 @@ public class SnakeGame : MonoBehaviour
             newBend = SpawnNewTail(snakeTiles[snakeTiles.Count - 1].transform.position, false, newDir);
             newBend.GetComponent<SnakeTail>().SetVars(this, snakeLength, false, direction);
         }
+        snakeTiles.Remove(snakeTiles[snakeTiles.Count - 1]);
         Destroy(snakeTiles[snakeTiles.Count - 1]);
         snakeTiles.Add(newBend);
     }
@@ -111,7 +112,6 @@ public class SnakeGame : MonoBehaviour
         player.SetActive(false);
         transform.position = entrance.position;
         snakeTiles.Add(Instantiate(snake, entrance.position, snake.transform.rotation));
-        snakeLength = 0.2f;
     }
 
     public void SetDirection(float angle)
@@ -153,10 +153,15 @@ public class SnakeGame : MonoBehaviour
     {
         if(snakeLength < 0.1f && snakeLength > -1)
         {
-            gameObject.SetActive(false);
             player.SetActive(true);
             player.transform.position = lastEntrance;
-            snakeLength = -2;
+            snakeLength = 0.2f;
+            gameObject.SetActive(false);
         }
+    }
+
+    public void SetTailLength(float length)
+    {
+        snakeLength = length;
     }
 }
