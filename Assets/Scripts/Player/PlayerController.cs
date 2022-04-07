@@ -12,12 +12,14 @@ public class PlayerController : MonoBehaviour
 
     public float slime;
 
+    private Animator initialFallAnim;
+
     public RectTransform emptySlimeBar;
     private Transform slimeBar;
     private Rigidbody2D playerRb;
     public CardAnim tempCard;
 
-
+    public bool finishedOpenAnimation = false;
 
     public int enterGroundCollision;
 
@@ -52,6 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        initialFallAnim = GetComponent<Animator>();
         moveDirection = 1;
         //jumpParticle = particleEmitterObject.GetComponent<ParticleSystem>();
         slimeBar = emptySlimeBar.GetChild(0);
@@ -69,6 +72,11 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E) && currMorph != null && !onMorphCard)
         {
             Unmorph();
+        }
+        if(!initialFallAnim.GetCurrentAnimatorStateInfo(0).IsName("InitialFall"))
+        {
+            
+            finishedOpenAnimation = true;
         }
     }
 
