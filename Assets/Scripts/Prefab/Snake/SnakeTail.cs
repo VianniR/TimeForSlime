@@ -8,19 +8,24 @@ public class SnakeTail : MonoBehaviour
     private SnakeGame gameController;
     public Animator snakeAnim;
     public bool bend;
+    public Vector2 lookDirection;
     // Start is called before the first frame update
-    public void SetVars(SnakeGame gameInstance, float timer, bool bending)
+    private void Start()
+    {
+        StartCoroutine(SnakeWiggle());
+    }
+    public void SetVars(SnakeGame gameInstance, float timer, bool bending, Vector2 direction)
     {
         snakeTime = timer;
         gameController = gameInstance;
         bend = bending;
+        lookDirection = direction;
     }
 
     // Update is called once per frame
 
     IEnumerator SnakeWiggle()
     {
-        yield return new WaitForSeconds(0.08333f);
         yield return new WaitForSeconds(snakeTime);
         if(bend)
             snakeAnim.Play("BendEnd");

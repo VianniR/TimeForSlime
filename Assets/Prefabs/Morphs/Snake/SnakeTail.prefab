@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4307793375811417613}
   - component: {fileID: 3259065063610464653}
-  - component: {fileID: 4077773375548276556}
+  - component: {fileID: 6017082305808289735}
   - component: {fileID: 7927725772613917562}
   m_Layer: 0
   m_Name: SnakeTail
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4077773375548276556
+--- !u!114 &6017082305808289735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,10 +93,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4107750877887395274}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2292b9b6e812fd44b13f073fb68278b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7aabed15d32db854492c4272b13ffbe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTime: 1
+  snakeAnim: {fileID: 7927725772613917562}
+  bend: 0
 --- !u!95 &7927725772613917562
 Animator:
   serializedVersion: 3

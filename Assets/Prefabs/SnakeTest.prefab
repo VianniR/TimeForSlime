@@ -70,6 +70,7 @@ MonoBehaviour:
   grid: {fileID: 8106579493543515711}
   tilemap: {fileID: 8106579494062424489}
   snake: {fileID: 4107750877887395274, guid: d356b9c7e1e0518408e49f89dbe1f662, type: 3}
+  snakeTiles: []
 --- !u!61 &2738203943558536137
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -602,7 +603,7 @@ GameObject:
   - component: {fileID: 2522736836276945153}
   m_Layer: 0
   m_Name: Entrance
-  m_TagString: Untagged
+  m_TagString: SnakeExit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
