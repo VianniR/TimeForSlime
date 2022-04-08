@@ -26,4 +26,11 @@ public class CutSceneScript : MonoBehaviour
             GetComponent<Animator>().enabled = false;
        }
     }
+
+    void enableAnimators(string gameObjectName)
+    {
+        
+    }
+
+
 }
