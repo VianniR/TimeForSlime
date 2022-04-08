@@ -40,25 +40,25 @@ public class SnakeGame : MonoBehaviour
         player.transform.position = transform.position;
         if (xInput == 1 && !direction.Equals(Vector2.right))
         {
-            CreateBend(direction, Vector2.right);
+            CreateBend(Vector2.right);
             direction = Vector2.right;
             transform.position = CellToRealWorld(tilemapPos);
         }
         else if (xInput == -1 && !direction.Equals(Vector2.left))
         {
-            CreateBend(direction, Vector2.left);
+            CreateBend(Vector2.left);
             direction = Vector2.left;
             transform.position = CellToRealWorld(tilemapPos);
         }
         else if (yInput == 1 && !direction.Equals(Vector2.up))
         {
-            CreateBend(direction, Vector2.up);
+            CreateBend(Vector2.up);
             direction = Vector2.up;
             transform.position = CellToRealWorld(tilemapPos);
         }
         else if (yInput == -1 && !direction.Equals(Vector2.down))
         {
-            CreateBend(direction, Vector2.down);
+            CreateBend(Vector2.down);
             direction = Vector2.down;
             transform.position = CellToRealWorld(tilemapPos);
         }
@@ -75,24 +75,23 @@ public class SnakeGame : MonoBehaviour
         prevTilemapPos = tilemapPos;
     }
 
-    public void CreateBend(Vector2 prevDir, Vector2 newDir)
+    public void CreateBend(Vector2 newDir)
     {
         GameObject newBend;
-        if (!hitWall || !snakeTiles[snakeTiles.Count - 1].GetComponent<SnakeTail>().bend)
+        Vector2 prevDir = snakeTiles[snakeTiles.Count - 2].GetComponent<SnakeTail>().lookDirection;
+        float turnDir = (Vector3.Cross(prevDir, newDir)).z;
+        if (turnDir != 0)
         {
-            float turnDir = (Vector3.Cross(prevDir, newDir)).z;
             newBend = SpawnNewTail(snakeTiles[snakeTiles.Count - 1].transform.position, true, prevDir);
             newBend.transform.localScale = new Vector3(-1, turnDir, 1) * 0.5f;
             newBend.GetComponent<Animator>().Play("Bend");
-            newBend.GetComponent<SnakeTail>().SetVars(this, snakeLength, true, direction);
         }
         else
         {
             newBend = SpawnNewTail(snakeTiles[snakeTiles.Count - 1].transform.position, false, newDir);
-            newBend.GetComponent<SnakeTail>().SetVars(this, snakeLength, false, direction);
         }
-        snakeTiles.Remove(snakeTiles[snakeTiles.Count - 1]);
         Destroy(snakeTiles[snakeTiles.Count - 1]);
+        snakeTiles.Remove(snakeTiles[snakeTiles.Count - 1]);
         snakeTiles.Add(newBend);
     }
 
@@ -129,15 +128,18 @@ public class SnakeGame : MonoBehaviour
     {
         if(other.CompareTag("SnakeExit"))
         {
-            gameObject.SetActive(false);
             player.SetActive(true);
+            snakeLength = 0.2f;
+            foreach (GameObject s in snakeTiles)
+                Destroy(s);
+            snakeTiles.Clear();
+            gameObject.SetActive(false);
         }
     }
     public void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
-            snakeLength -= Time.deltaTime;
             hitWall = true;
         }
     }
@@ -151,11 +153,16 @@ public class SnakeGame : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(hitWall)
+        {
+            snakeLength -= Time.deltaTime;
+        }
         if(snakeLength < 0.1f && snakeLength > -1)
         {
             player.SetActive(true);
             player.transform.position = lastEntrance;
             snakeLength = 0.2f;
+            snakeTiles.Clear();
             gameObject.SetActive(false);
         }
     }
