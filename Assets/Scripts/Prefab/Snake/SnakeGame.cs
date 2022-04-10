@@ -62,7 +62,7 @@ public class SnakeGame : MonoBehaviour
             direction = Vector2.down;
             transform.position = CellToRealWorld(tilemapPos);
         }
-        if(snakeLength > 0)
+        if(snakeLength > 0 && !hitWall)
             rb.velocity = speed * direction;
 
         tilemapPos = grid.WorldToCell(transform.position);
@@ -78,7 +78,9 @@ public class SnakeGame : MonoBehaviour
     public void CreateBend(Vector2 newDir)
     {
         GameObject newBend;
-        Vector2 prevDir = snakeTiles[snakeTiles.Count - 2].GetComponent<SnakeTail>().lookDirection;
+        Vector2 prevDir = direction;
+        if (snakeTiles.Count > 1)
+            prevDir = snakeTiles[snakeTiles.Count - 2].GetComponent<SnakeTail>().lookDirection;
         float turnDir = (Vector3.Cross(prevDir, newDir)).z;
         if (turnDir != 0)
         {
@@ -99,18 +101,18 @@ public class SnakeGame : MonoBehaviour
     {
         float cosTheta = (tailDirection.x + 1);
         float sinTheta = (tailDirection.y + tailDirection.x * (tailDirection.x - 1));
-        GameObject newTail = Instantiate(snake, CellToRealWorld(tilemapPos), new Quaternion(0, 0, sinTheta, cosTheta));
+        GameObject newTail = Instantiate(snake, position, new Quaternion(0, 0, sinTheta, cosTheta));
         newTail.GetComponent<SnakeTail>().SetVars(this, snakeLength, bend, tailDirection);
         return newTail;
     }
 
     public void SpawnSnake(Transform entrance)
     {
+        transform.position = entrance.position;
         gameObject.SetActive(true);
         lastEntrance = player.transform.position;
         player.SetActive(false);
-        transform.position = entrance.position;
-        snakeTiles.Add(Instantiate(snake, entrance.position, snake.transform.rotation));
+        snakeTiles.Add(SpawnNewTail(entrance.position, false, Vector2.left));
     }
 
     public void SetDirection(float angle)
@@ -143,7 +145,7 @@ public class SnakeGame : MonoBehaviour
             hitWall = true;
         }
     }
-    public void OnCollisionEnter2D(Collision2D other)
+    public void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
