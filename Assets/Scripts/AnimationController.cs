@@ -7,6 +7,7 @@ public class AnimationController : MonoBehaviour
     private Animator animator;
     public string groundState;
     private int currAnimationOverride;
+    public Animator spedGoobyAnimator;
     
     void Start()
     {
@@ -37,5 +38,10 @@ public class AnimationController : MonoBehaviour
     public Animator getAnimator()
     {
         return animator;
+    }
+
+    public void activateSped()
+    {
+        spedGoobyAnimator.Play("standUpAndRun");
     }
 }

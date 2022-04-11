@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject initialFallCam;
     public GameObject cam1;
+    public MasterController masterScript;
 
     private Animator goobyAnimator;
     private Animation cameraAnimation;
@@ -31,12 +32,13 @@ public class GameManager : MonoBehaviour
         goobyAnimator.enabled = true;
         cameraAnimation.enabled = true;
         
-        resetGoobyPostion();
+        resetGoobyPostionAndGround();
     }
 
-    void resetGoobyPostion()
+    void resetGoobyPostionAndGround()
     {
         player.transform.eulerAngles = new Vector3(0, 0, 0);
+        masterScript.onGround = true;
     }
 
     void initialFallCamToCam1()
