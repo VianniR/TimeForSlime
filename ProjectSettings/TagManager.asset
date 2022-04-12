@@ -15,6 +15,7 @@ TagManager:
   - PlayerWeapon
   - EnemyAttack
   - SnakeExit
+  - Apple
   layers:
   - Default
   - TransparentFX

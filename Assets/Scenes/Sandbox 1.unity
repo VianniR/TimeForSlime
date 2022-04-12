@@ -1231,6 +1231,22 @@ PrefabInstance:
       propertyPath: m_Size.y
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 2738203943558536137, guid: 20121825b54a4dc4cbd244b9ef918c07, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928751928617948633, guid: 20121825b54a4dc4cbd244b9ef918c07, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 3928751928617948633, guid: 20121825b54a4dc4cbd244b9ef918c07, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944814592709886173, guid: 20121825b54a4dc4cbd244b9ef918c07, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 8106579492533200130, guid: 20121825b54a4dc4cbd244b9ef918c07, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -87624,7 +87640,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1779937766}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2c8dee2df601df47affeddc351f6a86, type: 3}
   m_Name: 
@@ -87633,6 +87649,7 @@ MonoBehaviour:
   player: {fileID: 0}
   initialFallCam: {fileID: 0}
   cam1: {fileID: 0}
+  masterScript: {fileID: 0}
 --- !u!1 &1815572499
 GameObject:
   m_ObjectHideFlags: 0
