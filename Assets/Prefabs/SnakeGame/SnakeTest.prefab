@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &856520544500321737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6497390906583745946}
+  m_Layer: 0
+  m_Name: Apples
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6497390906583745946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856520544500321737}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3928751928617948633}
+  m_Father: {fileID: 8106579492533200130}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2038065354466600128
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,6 +102,13 @@ MonoBehaviour:
   tilemap: {fileID: 8106579494062424489}
   snake: {fileID: 4107750877887395274, guid: d356b9c7e1e0518408e49f89dbe1f662, type: 3}
   snakeTiles: []
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  snakeContainer: {fileID: 9100102457052550314}
+  appleSpawns:
+  - {fileID: 3928751928617948633}
+  applePrefab: {fileID: 4740680310317379774, guid: 9454599d98de0c946a9a7c18a3e00a4a, type: 3}
 --- !u!61 &2738203943558536137
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -468,6 +506,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &3467387073065974642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3928751928617948633}
+  m_Layer: 0
+  m_Name: AppleSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3928751928617948633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3467387073065974642}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6497390906583745946}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4036649320554361243
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,6 +742,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enabledObject: {fileID: 3231558856786489744}
+--- !u!1 &7944814592709886173
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9100102457052550314}
+  m_Layer: 0
+  m_Name: SnakeTiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9100102457052550314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7944814592709886173}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8106579492533200130}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8106579492533200131
 GameObject:
   m_ObjectHideFlags: 0
@@ -705,6 +803,8 @@ Transform:
   - {fileID: 7590970534506747113}
   - {fileID: 229584393153457410}
   - {fileID: 8641664712917346944}
+  - {fileID: 9100102457052550314}
+  - {fileID: 6497390906583745946}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1284,43 +1384,43 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 8555422935932464920}
     m_ColliderPaths:
-    - - X: -100
-        Y: 15000000
-      - X: -15000000
-        Y: 15000000
-      - X: -15000000
-        Y: 5000100
-      - X: -100
-        Y: 5000100
     - - X: 20000000
         Y: 15000000
-      - X: 5000100
+      - X: 5000000
         Y: 15000000
-      - X: 5000100
+      - X: 5000000
         Y: -15000000
       - X: 20000000
         Y: -15000000
-    - - X: -100
-        Y: -100
+    - - X: 0
+        Y: 15000000
       - X: -15000000
-        Y: -100
+        Y: 15000000
+      - X: -15000000
+        Y: 5000000
+      - X: 0
+        Y: 5000000
+    - - X: 0
+        Y: 0
+      - X: -15000000
+        Y: 0
       - X: -15000000
         Y: -15000000
-      - X: -100
+      - X: 0
         Y: -15000000
   m_CompositePaths:
     m_Paths:
     - - {x: 1.9999708, y: -1.5}
       - {x: 1.9999708, y: 1.5}
-      - {x: 0.50001, y: 1.4999707}
-      - {x: 0.5000393, y: -1.5}
-    - - {x: -0.0000393, y: 0.50001}
-      - {x: -0.0000393, y: 1.5}
+      - {x: 0.5, y: 1.4999707}
+      - {x: 0.5000293, y: -1.5}
+    - - {x: -0.000029300001, y: 0.5}
+      - {x: -0.000029300001, y: 1.5}
       - {x: -1.5, y: 1.4999707}
-      - {x: -1.4999707, y: 0.50001}
-    - - {x: -0.0000393, y: -1.5}
-      - {x: -0.0000393, y: -0.00001}
-      - {x: -1.5, y: -0.0000393}
+      - {x: -1.4999707, y: 0.5}
+    - - {x: -0.000029300001, y: -1.5}
+      - {x: -0.000029300001, y: 0}
+      - {x: -1.5, y: -0.000029300001}
       - {x: -1.4999707, y: -1.5}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005

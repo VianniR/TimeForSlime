@@ -10,7 +10,7 @@ public class CutSceneScript : MonoBehaviour
     public bool initialAnimationDone;
     void Start()
     {
-      
+        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
