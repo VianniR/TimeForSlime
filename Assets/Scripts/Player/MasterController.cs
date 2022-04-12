@@ -142,11 +142,7 @@ public class MasterController : MonoBehaviour
         {
             ResetToground();
         }
-        else
-        {
-            //This used to be false, changed to true for the time being
-            onGround = true;
-        }
+  
         if(!ceilingCheck.Equals(""))
         {
             isJumping = false;
