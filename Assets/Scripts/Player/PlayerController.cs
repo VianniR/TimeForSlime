@@ -224,4 +224,9 @@ public class PlayerController : MonoBehaviour
         moveDirection = newDir;
         transform.localScale = new Vector3(moveDirection, transform.localScale.y, transform.localScale.z);
     }
+
+    public GameObject getCurrMorph()
+    {
+        return currMorph;
+    }
 }
