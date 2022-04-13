@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  jumpForce: 0
+  jumpForce: 22
   onGround: 0
   playerParent: {fileID: 0}
   groundCheckers: {fileID: 6393868692279646547}
@@ -202,6 +202,8 @@ MonoBehaviour:
   attackCollider: {fileID: 5048432854698750445}
   ratAnim: {fileID: 1886869396920635354}
   scratchFX: {fileID: 3748226186708282190}
+  maxWallRunSpeed: 9
+  deceleration: 7
 --- !u!114 &5208675261075183750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,3 +281,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundState: Idle
+  spedGoobyAnimator: {fileID: 0}

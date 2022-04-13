@@ -25,8 +25,5 @@ public class GrabItem : MonoBehaviour
         }
     }
 
-    void holdItem()
-    {
-        transform.position = new Vector3(player.transform)
-    }
+
 }
