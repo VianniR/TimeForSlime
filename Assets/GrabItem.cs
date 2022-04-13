@@ -6,6 +6,8 @@ public class GrabItem : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject player;
+    public bool grabbedObject;
+    bool hasNotBeenTouched = true;
     void Start()
     {
         
@@ -14,19 +16,21 @@ public class GrabItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+      
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.CompareTag("Player"))
+        if(col.CompareTag("Player") && hasNotBeenTouched)
         {
-
+            holdItem();
+            transform.localPosition = new Vector2(.37f, -.11f);
+            hasNotBeenTouched = false;
         }
     }
 
     void holdItem()
     {
-        transform.position = new Vector3(player.transform)
+        transform.parent = player.transform;
     }
 }
