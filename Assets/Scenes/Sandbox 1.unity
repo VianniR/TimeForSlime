@@ -1859,7 +1859,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.22591, y: -4.744293, z: -10.666698}
+  m_LocalPosition: {x: -31.057587, y: -4.713664, z: -10.666698}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -23007,6 +23007,25 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &1394069344 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6590732047139002908, guid: 6c6d6f02b0bf16a4782dcc00e6a5afd7, type: 3}
+  m_PrefabInstance: {fileID: 3480426760458064556}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1394069354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394069344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a61c6c7c18852e46a69c3f9d925ccfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundState: Idle
+  spedGoobyAnimator: {fileID: 0}
 --- !u!1 &1489884974
 GameObject:
   m_ObjectHideFlags: 0
@@ -93380,6 +93399,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3521675214977235208, guid: 6c6d6f02b0bf16a4782dcc00e6a5afd7, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3521675214977235208, guid: 6c6d6f02b0bf16a4782dcc00e6a5afd7, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6590732047139002907, guid: 6c6d6f02b0bf16a4782dcc00e6a5afd7, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -93430,7 +93457,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6590732047139002908, guid: 6c6d6f02b0bf16a4782dcc00e6a5afd7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7836113821382184242, guid: 6c6d6f02b0bf16a4782dcc00e6a5afd7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 947279020401474155, guid: 2314db5f1b0b9a44a8785b0d26445b81, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c6d6f02b0bf16a4782dcc00e6a5afd7, type: 3}
