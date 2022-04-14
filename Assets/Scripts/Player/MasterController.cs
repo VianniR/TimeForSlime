@@ -202,7 +202,8 @@ public class MasterController : MonoBehaviour
 
     public void MoveRb(float x)
     {
-        if(Mathf.Approximately(playerRb.velocity.x, 0))
-        playerRb.position += new Vector2(x * playerParent.moveDirection, 0);
+        bool onWall = collisionCheckScript.LeftWallCollision().Equals("") && collisionCheckScript.RightWallCollision().Equals("");
+        if (Mathf.Approximately(playerRb.velocity.x, 0) && onWall)
+            playerRb.position += new Vector2(x * playerParent.moveDirection, 0);
     }
 }

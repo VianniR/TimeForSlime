@@ -24,7 +24,7 @@ public class MasterEnemy : MonoBehaviour
     protected bool canAttack;
     public float attackCooldown;
 
-    private float initWidth;
+    protected float initWidth;
 
 
     // Start is called before the first frame update

@@ -41,14 +41,6 @@ public class SnakeGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 rayPos = new Vector2(CellToRealWorld(tilemapPos).x, CellToRealWorld(tilemapPos).y) + direction * 0.5f;
-        RaycastHit2D rayHit = Physics2D.Raycast(rayPos, direction, 0.5f, groundLayer);
-        Debug.DrawRay(rayPos, direction);
-
-        if (rayHit.collider != null && rayHit.distance < 0.1f)
-            hitWall = true;
-        else
-            hitWall = false;
 
         float xInput = Input.GetAxisRaw("Horizontal");
         float yInput = Input.GetAxisRaw("Vertical");
@@ -90,6 +82,7 @@ public class SnakeGame : MonoBehaviour
         }
 
         prevTilemapPos = tilemapPos;
+        CheckCollision();
     }
 
     public void CreateBend(Vector2 newDir)
@@ -152,16 +145,7 @@ public class SnakeGame : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("SnakeExit"))
-        {
-            player.SetActive(true);
-            snakeLength = 0.2f;
-            foreach (GameObject s in snakeTiles)
-                Destroy(s);
-            snakeTiles.Clear();
-            gameObject.SetActive(false);
-        }
-        else if(other.CompareTag("Apple"))
+        if(other.CompareTag("Apple"))
         {
             snakeLength += 0.2f;
             Destroy(other.gameObject);
@@ -198,5 +182,31 @@ public class SnakeGame : MonoBehaviour
             return returnBool && !compareDirections;
         }
         return returnBool;
+    }
+
+    public void CheckCollision()
+    {
+        Vector2 rayPos = new Vector2(CellToRealWorld(tilemapPos).x, CellToRealWorld(tilemapPos).y) + direction * 0.5f;
+        RaycastHit2D rayHit = Physics2D.Raycast(rayPos, direction, 0.5f, groundLayer);
+        Debug.DrawRay(rayPos, direction);
+
+        if (rayHit.collider != null && rayHit.distance < 0.1f)
+        {
+            if (rayHit.collider.CompareTag("SnakeExit"))
+            {
+                player.transform.position = rayHit.collider.transform.parent.Find("PlayerExitPos").position;
+                player.SetActive(true);
+                snakeLength = 0.2f;
+                foreach (GameObject s in snakeTiles)
+                    Destroy(s);
+                snakeTiles.Clear();
+                gameObject.SetActive(false);
+            }
+            hitWall = true;
+        }
+        else
+        {
+            hitWall = false;
+        }
     }
 }

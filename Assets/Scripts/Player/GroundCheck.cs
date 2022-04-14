@@ -139,9 +139,16 @@ public class GroundCheck : MonoBehaviour
 
     public string GetTile(Collider2D collision, Vector2 collisionPos)
     {
-        Tilemap tilemap = collision.GetComponent<Tilemap>();
-        GridLayout grid = tilemap.transform.parent.gameObject.GetComponent<GridLayout>();
-        Vector3Int cellPos = grid.WorldToCell(collisionPos);
-        return tilemap.GetSprite(cellPos).name;
+        if (collision.GetComponent<Tilemap>() != null)
+        {
+            Tilemap tilemap = collision.GetComponent<Tilemap>();
+            GridLayout grid = tilemap.transform.parent.gameObject.GetComponent<GridLayout>();
+            Vector3Int cellPos = grid.WorldToCell(collisionPos);
+            if(tilemap.GetSprite(cellPos) != null)
+            {
+                return tilemap.GetSprite(cellPos).name;
+            }
+        }
+        return "other";
     }
 }
