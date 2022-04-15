@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 8
-  damage: 1
+  damage: 0.7
 --- !u!1 &1229129010300445367
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundState: Idle
+  spedGoobyAnimator: {fileID: 0}
 --- !u!1 &5646436244483164019
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +289,7 @@ MonoBehaviour:
   fallFactor: 0
   gravity: 12
   playerSprite: {fileID: 5690913583970375228}
-  attackCooldown: 0.2
+  attackCooldown: 0.1
   invincColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 0.84313726}
   weapon: {fileID: 8514586689807600980}
   weaponAnim: {fileID: 3116636265271499609}
@@ -410,6 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundState: Idle
+  spedGoobyAnimator: {fileID: 0}
 --- !u!1 &7709729286378824751
 GameObject:
   m_ObjectHideFlags: 0

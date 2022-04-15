@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int maxHealth;
-    private int health;
+    public float maxHealth;
+    private float health;
     private bool isDead;
     public GameObject enemyCard;
 
@@ -55,7 +55,7 @@ public class EnemyHealth : MonoBehaviour
         gameObject.GetComponent<Rigidbody2D>().velocity = lole;
     }
 
-    public int CurrHealth()
+    public float CurrHealth()
     {
         return health;
     }
