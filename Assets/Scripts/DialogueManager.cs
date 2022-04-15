@@ -11,6 +11,10 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
     public Queue<string> sentences;
+    
+    public GameObject currentConvoNumber;
+    public GameObject nextConvoNumber;
+
     void Start()
     {
         sentences = new Queue<string>();
@@ -64,6 +68,8 @@ public class DialogueManager : MonoBehaviour
     {
         animator.Play("Dialogue_Close");
         Debug.Log("End of conversation");
+        currentConvoNumber.SetActive(false);
+        nextConvoNumber.SetActive(true);
     }
 
     // Update is called once per frame
