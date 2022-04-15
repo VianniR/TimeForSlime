@@ -18,6 +18,7 @@ public class ActivateDialogue : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {   
+        touchingCollider = false;
         canvas.SetActive(false);
     }
     void Update(){

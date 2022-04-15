@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Bucket : MonoBehaviour
 {
+    public int slimeCounter = 0;
+    public Sprite filledSprite;
+    private SpriteRenderer selfRenderer;
     // Start is called before the first frame update
     void Start()
     {
-        
+        selfRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -20,7 +23,14 @@ public class Bucket : MonoBehaviour
     {
         if(col.CompareTag("SlimeParticle"))
         {
-            Debug.Log("fill");
+            if(slimeCounter != 3)
+            {
+                slimeCounter++;
+            }
+            if(slimeCounter == 3)
+            {
+                selfRenderer.sprite = filledSprite;
+            }
         }
     } 
 }
