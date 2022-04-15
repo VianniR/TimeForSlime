@@ -192,6 +192,7 @@ MonoBehaviour:
   jumpForce: 20
   onGround: 0
   playerParent: {fileID: 0}
+  morphSize: 2
   groundCheckers: {fileID: 6393868692279646547}
   morphAnim: {fileID: 0}
   fallFactor: 0

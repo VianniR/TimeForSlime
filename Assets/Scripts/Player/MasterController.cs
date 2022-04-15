@@ -9,6 +9,7 @@ public class MasterController : MonoBehaviour
     public float jumpForce;
     public bool onGround;
     public PlayerController playerParent;
+    public float morphSize;
 
     protected bool onSlime = false;
     protected string currCollision = "";

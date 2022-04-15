@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 3296308404937789325}
-  direction: 0
+  direction: 1
   idleSpeed: 3
   groundCheck: {fileID: 3296308404937789327}
   stunTime: 0.3
@@ -156,7 +156,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4672
   angered: 0
-  attackCooldown: 0.7
+  attackCooldown: 0.6
   runSpeed: 8
   attackRange: {fileID: 4532901116162952879}
   defaultKnockback: {fileID: 3296308404937789323}
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f319941468c4671418d6a1f78d62f931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 7
+  force: 5
   damage: 0
   stunTime: 0.2
   targetTransform: {fileID: 3296308404937789324}

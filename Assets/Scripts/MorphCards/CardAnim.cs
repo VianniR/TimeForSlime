@@ -16,6 +16,9 @@ public class CardAnim : MonoBehaviour
     public Transform defaultPos;
     public Animator playerCardAnim;
 
+    public Transform backCard;
+    public Transform frontCard;
+
     public void PlayCardAnim(Sprite cardSprite, Vector3 position, Sprite playerCard)
     {
         playerCardSprite = playerCard;
@@ -35,7 +38,7 @@ public class CardAnim : MonoBehaviour
     IEnumerator CardTransform()
     {
         Vector2 P1 = transform.localPosition;
-        for(float t = 0; t <= 1; t+=0.05f)
+        for(float t = 0; t <= 1; t+=0.1f)
         {
             Vector2 A = Vector2.Lerp(P1, P2.localPosition, t);
             Vector2 B = Vector2.Lerp(P2.localPosition, playerCard.localPosition, t);
@@ -47,19 +50,19 @@ public class CardAnim : MonoBehaviour
 
         playerCardAnim.Play("Flip");
         yield return new WaitForSeconds(0.208f);
-        playerCard.GetChild(1).SetAsFirstSibling();
-        playerCard.GetChild(0).GetComponent<Image>().sprite = playerCardSprite;
+        frontCard.SetAsFirstSibling();
+        frontCard.GetComponent<Image>().sprite = playerCardSprite;
         yield return new WaitForSeconds(0.416f);
-        playerCard.GetChild(1).SetAsFirstSibling();
+        backCard.SetAsFirstSibling();
     }
 
     public IEnumerator CardUnmorph()
     {
         playerCardAnim.Play("Flip");
         yield return new WaitForSeconds(0.208f);
-        playerCard.GetChild(1).SetAsFirstSibling();
-        playerCard.GetChild(0).GetComponent<Image>().sprite = goobyCardSprite;
+        frontCard.SetAsFirstSibling();
+        frontCard.GetComponent<Image>().sprite = goobyCardSprite;
         yield return new WaitForSeconds(0.416f);
-        playerCard.GetChild(1).SetAsFirstSibling();
+        backCard.SetAsFirstSibling();
     }
 }

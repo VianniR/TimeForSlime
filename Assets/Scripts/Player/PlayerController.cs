@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private GameObject currMorph;
     private MasterController currMorphController;
     private bool onMorphCard;
+    public GameObject morphBubble;
 
     public Vector2 hitDirection;
     public bool stunned;
@@ -69,9 +70,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && currMorph != null && !onMorphCard)
+        if(Input.GetKeyDown(KeyCode.Q) && currMorph != null && !onMorphCard && !morphBubble.activeSelf)
         {
-            Unmorph();
+            StartCoroutine(Unmorph());
         }
         if(!initialFallAnim.GetCurrentAnimatorStateInfo(0).IsName("InitialFall"))
         {
@@ -173,7 +174,10 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator MorphRoutine(GameObject newMorph)
     {
-        yield return new WaitForSeconds(0.7f);
+        float bubbleSize = newMorph.GetComponent<MasterController>().morphSize;
+        morphBubble.transform.localScale = new Vector3(bubbleSize, bubbleSize, 1);
+        morphBubble.SetActive(true);
+        yield return new WaitForSeconds(0.25f);
         if (currMorph != null)
         {
             Destroy(currMorph);
@@ -181,15 +185,23 @@ public class PlayerController : MonoBehaviour
         gooby.SetActive(false);
         currMorph = Instantiate(newMorph, transform);
         currMorphController = currMorph.GetComponent<MasterController>();
+        yield return new WaitForSeconds(0.4f);
+        morphBubble.SetActive(false);
     }
 
-    public void Unmorph()
+    public IEnumerator Unmorph()
     {
+        float bubbleSize = currMorphController.morphSize;
+        morphBubble.transform.localScale = new Vector3(bubbleSize, bubbleSize, 1);
+        morphBubble.SetActive(true);
         StartCoroutine(tempCard.CardUnmorph());
+        yield return new WaitForSeconds(0.25f);
         Destroy(currMorph);
         currMorph = null;
         currMorphController = gooby.GetComponent<MasterController>();
         gooby.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        morphBubble.SetActive(false);
     }
 
     public void Hit(Vector2 force, int damage, float stunTimer)
