@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5391158126066148758
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6380615484008601299}
+  m_Layer: 9
+  m_Name: PoisonPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6380615484008601299
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5391158126066148758}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.634, y: 0.26, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6590732047139002907}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6590732047139002908
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,6 +43,8 @@ GameObject:
   - component: {fileID: 7836113821382184242}
   - component: {fileID: 3521675214977235208}
   - component: {fileID: 5972964172040558586}
+  - component: {fileID: 1212040742856031366}
+  - component: {fileID: 142081242003663141}
   m_Layer: 9
   m_Name: SnakeMorph
   m_TagString: Player
@@ -29,8 +61,9 @@ Transform:
   m_GameObject: {fileID: 6590732047139002908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.68586, y: 0.96877724, z: 0.68586}
-  m_Children: []
+  m_LocalScale: {x: 2, y: 2, z: 0.68586}
+  m_Children:
+  - {fileID: 6380615484008601299}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -93,7 +126,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: e74b1c4fccd129247923779e48ac2fab, type: 3}
+  m_Sprite: {fileID: -6494952964783555916, guid: b35f5096707716046b78288cfdf04f7e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -117,18 +150,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.5, y: 0.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 0.3}
   m_EdgeRadius: 0
 --- !u!114 &5972964172040558586
 MonoBehaviour:
@@ -149,10 +182,44 @@ MonoBehaviour:
   groundCheckers: {fileID: 6590732047139002907}
   morphAnim: {fileID: 0}
   fallFactor: 0
-  moveDirection: 0
   gravity: 12
   playerSprite: {fileID: 7836113821382184242}
-  attackCooldown: 1
+  attackCooldown: 0.6
   invincColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 0.78039217}
   poisonProjectile: {fileID: 4222980641043688932, guid: c69b267dc703da645930794022af3958, type: 3}
   projectileSpeed: 7
+  poisonPos: {fileID: 6380615484008601299}
+  snakeAnim: {fileID: 142081242003663141}
+--- !u!95 &1212040742856031366
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6590732047139002908}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 984e48590f184364584251472738f72f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &142081242003663141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6590732047139002908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a61c6c7c18852e46a69c3f9d925ccfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundState: Idle
+  spedGoobyAnimator: {fileID: 0}

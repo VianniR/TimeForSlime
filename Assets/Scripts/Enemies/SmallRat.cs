@@ -9,6 +9,7 @@ public class SmallRat : MasterEnemy
     public GameObject attackRange;
     public GameObject defaultKnockback;
     public AnimationController ratAnim;
+    private Collider2D ratCollider;
 
     bool isAttacking;
 
@@ -19,6 +20,7 @@ public class SmallRat : MasterEnemy
         canAttack = false;
         ratAnim.PlayAnim("Walk", 1);
         isAttacking = false;
+        ratCollider = GetComponent<Collider2D>();
     }
     // Update is called once per frame
     void Update()
@@ -37,7 +39,7 @@ public class SmallRat : MasterEnemy
                 SetDirection((int)Mathf.Sign(distFromPlayer));
             }
 
-            if (Mathf.Abs(distFromPlayer) > 2f && !stunned && !isAttacking)
+            if (Mathf.Abs(distFromPlayer) > 1.5f && DetectDistance() > 0.5f && !stunned && !isAttacking)
             {
                 rb.velocity = new Vector2(runSpeed * direction, rb.velocity.y);
                 ratAnim.PlayAnim("Run", 1);
@@ -89,5 +91,17 @@ public class SmallRat : MasterEnemy
         yield return new WaitForSeconds(0.2f);
         isAttacking = false;
         StartCoroutine(AttackCooldown());
+    }
+
+    float DetectDistance()
+    {
+        Vector2 rayPos = new Vector3(transform.position.x + ratCollider.bounds.size.x * 0.5f * direction, transform.position.y);
+        RaycastHit2D rayHit = Physics2D.Raycast(rayPos, new Vector2(direction, 0), 10, sightLayers);
+        Debug.DrawRay(rayPos, new Vector2(direction, 0));
+        if(rayHit.collider != null && rayHit.collider.CompareTag("Player"))
+        {
+            return rayHit.distance;
+        }
+        return 100;
     }
 }
