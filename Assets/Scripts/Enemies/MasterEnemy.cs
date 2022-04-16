@@ -54,9 +54,9 @@ public class MasterEnemy : MonoBehaviour
         {
             wall = groundCheck.LeftWallCollision();
         }
-        onGround = groundCheck.GroundCollision().Contains("Ground");
+        onGround = !groundCheck.GroundCollision().Equals("");
         //Debug.Log(wall);
-        if (wall.Contains("Ground"))
+        if (!wall.Equals(""))
         {
             direction *= -1;
             transform.localScale = new Vector3(direction * initWidth, transform.localScale.y, 1f);

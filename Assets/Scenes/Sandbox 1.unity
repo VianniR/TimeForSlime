@@ -981,7 +981,6 @@ MonoBehaviour:
   slimeCap: 100
   slime: 0
   emptySlimeBar: {fileID: 1163592042}
-  slimeBar: {fileID: 999354432}
   tempCard: {fileID: 785324}
   finishedOpenAnimation: 0
   enterGroundCollision: 0
@@ -23903,7 +23902,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 6116b422fccd4b749b90974410fe832b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94059,3 +94058,68 @@ PrefabInstance:
       objectReference: {fileID: 947279020401474155, guid: 2314db5f1b0b9a44a8785b0d26445b81, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c6d6f02b0bf16a4782dcc00e6a5afd7, type: 3}
+--- !u!1001 &8581933338999340235
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8581933339176745010, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581933339176745010, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.613
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581933339176745010, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.215
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581933339176745010, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581933339176745010, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581933339176745010, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581933339176745010, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581933339176745010, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581933339176745010, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581933339176745010, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581933339176745010, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581933339176745021, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581933339176745022, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_Name
+      value: Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 8581933339176745022, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: dd377e1432cf3fe48b4fd84e6d7277b1, type: 3}

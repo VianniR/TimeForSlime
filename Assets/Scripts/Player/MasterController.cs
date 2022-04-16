@@ -139,7 +139,7 @@ public class MasterController : MonoBehaviour
     {
         string ceilingCheck = collisionCheckScript.CeilingCollision();
         string groundCheck = collisionCheckScript.GroundCollision();
-        if (groundCheck.Contains("Ground"))
+        if (!groundCheck.Equals(""))
         {
             ResetToground();
         }
