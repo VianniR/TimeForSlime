@@ -248,8 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e733edd40a4a4614d82fa03a63bfce35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  morph: {fileID: 6393868692279646552, guid: 1916f5c26217a294691d13071d9ce22a, type: 3}
-  morphCard: {fileID: 21300000, guid: c42e6d115b5e8e646b75b00f39d0c110, type: 3}
+  morph: {fileID: 6590732047139002908, guid: 1a7cc45ba2cb4c2459f43dbc4a3158c6, type: 3}
+  morphCard: {fileID: 21300000, guid: 66818d9eaef4bf349b0c84b6777697b7, type: 3}
 --- !u!1 &2606771292046632667
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 5411045882688975711}
   - component: {fileID: 4072752588655489556}
   m_Layer: 0
-  m_Name: BlobCard
+  m_Name: SnakeDNA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -402,7 +402,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a1624932ae058b640a0fe5f3e03e3e45, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e834339651cffdb48bcf397927a1f2df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -430,7 +430,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.16, y: 0.16}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -462,7 +462,7 @@ Animator:
   m_GameObject: {fileID: 5411045882688975710}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 0cb4b8c27111573498072cfa0da1d9d3, type: 2}
+  m_Controller: {fileID: 22100000, guid: 254d975a75830784bb9985dc2ae883dc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

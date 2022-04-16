@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 4
-  enemyCard: {fileID: 5411045882688975710, guid: 41f46c53bc2f4f84ca8c9deb411855e4, type: 3}
+  enemyCard: {fileID: 5411045882688975710, guid: ffd9f55d5e2d278409b54c61419b785d, type: 3}
 --- !u!114 &6664411598820400565
 MonoBehaviour:
   m_ObjectHideFlags: 0
