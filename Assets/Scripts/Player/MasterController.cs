@@ -7,7 +7,11 @@ public class MasterController : MonoBehaviour
     protected Rigidbody2D playerRb;
     public float speed;
     public float jumpForce;
+
+    public AudioClip jumpSound;
     public bool onGround;
+
+    private AudioSource audioSource;
     public PlayerController playerParent;
     public float morphSize;
 
@@ -43,6 +47,7 @@ public class MasterController : MonoBehaviour
         playerParent = transform.parent.GetComponent<PlayerController>();
         animController = GetComponent<AnimationController>();
         isAttacking = false;
+        audioSource = playerParent.GetComponent<AudioSource>();
     }
 
     public void MovePlayerStandard()
@@ -99,6 +104,7 @@ public class MasterController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && onGround && !isJumping)
         {
             onGround = false;
+            audioSource.PlayOneShot(jumpSound);
             isJumping = true;
             playerRb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
