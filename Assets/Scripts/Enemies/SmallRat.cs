@@ -21,6 +21,7 @@ public class SmallRat : MasterEnemy
         ratAnim.PlayAnim("Walk", 1);
         isAttacking = false;
         ratCollider = GetComponent<Collider2D>();
+        Debug.Log(ratCollider);
     }
     // Update is called once per frame
     void Update()
@@ -99,7 +100,7 @@ public class SmallRat : MasterEnemy
         RaycastHit2D rayHit = Physics2D.Raycast(rayPos, new Vector2(direction, 0), 10, sightLayers);
         Debug.DrawRay(rayPos, new Vector2(direction, 0));
         if(rayHit.collider != null && rayHit.collider.CompareTag("Player"))
-        {
+        { 
             return rayHit.distance;
         }
         return 100;

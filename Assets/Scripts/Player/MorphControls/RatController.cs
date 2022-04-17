@@ -21,7 +21,7 @@ public class RatController : MasterController
 
 
     // Start is called before the first frame update
-    new void Start()
+    void Awake()
     {
         base.Start();
         //animController = new AnimationController(blobAnim, "Idle");

@@ -9,7 +9,7 @@ public class AnimationController : MonoBehaviour
     private int currAnimationOverride;
     public Animator spedGoobyAnimator;
     
-    void Start()
+    void Awake()
     {
         animator = GetComponent<Animator>();
     }
