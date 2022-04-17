@@ -108,6 +108,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   referenceCollider: {fileID: 3521675214977235208}
+  drawLine: 0
   width: 0
   height: 0
 --- !u!114 &7769534346686980185
@@ -122,6 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1db15783814974d88df64ede3b4fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Snake
+  morphManager: {fileID: 0}
   maxHealth: 4
   enemyCard: {fileID: 5411045882688975710, guid: ffd9f55d5e2d278409b54c61419b785d, type: 3}
 --- !u!114 &6664411598820400565

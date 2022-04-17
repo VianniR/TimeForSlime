@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
+    public string name;
+
+    private MorphManager morphManager;
     public float maxHealth;
-    private float health;
+    public float health;
     private bool isDead;
     public GameObject enemyCard;
 
@@ -18,13 +21,16 @@ public class EnemyHealth : MonoBehaviour
         isDead = false;
         health = maxHealth;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        morphManager = GameObject.Find("Morph Manager").GetComponent<MorphManager>();
         enemyScript = gameObject.GetComponent<MasterEnemy>();
+        
     }
 
     private void Update()
     {
         if(health <= 0 && !isDead)
         {
+            
             isDead = true;
             StartCoroutine(Death());
         }
@@ -43,8 +49,12 @@ public class EnemyHealth : MonoBehaviour
 
     IEnumerator Death()
     {
+        
         yield return new WaitForSeconds(0.1f);
-        Instantiate(enemyCard, transform.position, enemyCard.transform.rotation);
+        if(morphManager.lastKilled.Equals(name) == false){
+            //morphManager.lastKilled = name;
+            Instantiate(enemyCard, transform.position, enemyCard.transform.rotation);
+        }
         Destroy(gameObject);
     }
 

@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e733edd40a4a4614d82fa03a63bfce35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: Snake
   morph: {fileID: 6590732047139002908, guid: 1a7cc45ba2cb4c2459f43dbc4a3158c6, type: 3}
   morphCard: {fileID: 21300000, guid: 66818d9eaef4bf349b0c84b6777697b7, type: 3}
 --- !u!1 &2606771292046632667
