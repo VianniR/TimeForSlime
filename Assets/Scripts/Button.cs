@@ -5,23 +5,44 @@ using UnityEngine.Events;
 
 public class Button : LevelReset
 {
-    public Transform RedThing;
     public UnityEvent OnClick;
+    public UnityEvent OnRelease;
 
     public UnityEvent OnReset;
+    public Collider2D refereceCollider;
+    public LayerMask detectionLayers;
+    private Transform boxcastStart;
 
-    void OnTriggerEnter2D(Collider2D other)
+    private bool pressed;
+    private bool triggered;
+    private Animator buttonAnim;
+
+    private void Start()
     {
-        if(other.gameObject.CompareTag("Player"))
+        buttonAnim = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        bool pressed = Physics2D.BoxCast(refereceCollider.bounds.center, refereceCollider.bounds.size, 0, Vector2.up, .1f, detectionLayers);
+
+
+        if (pressed && !triggered)
         {
-            RedThing.localPosition = new Vector3(0, -0.2f, 0);
+            triggered = true;
             OnClick.Invoke();
+            buttonAnim.Play("ButtonPress");
+        }
+        else if(!pressed && triggered)
+        {
+            triggered = false;
+            OnRelease.Invoke();
+            buttonAnim.Play("ButtonRelease");
         }
     }
 
     public override void OnLevelReset()
     {
-        RedThing.localPosition = new Vector3(0, 0.1f, 0);
         OnReset.Invoke();
     }
 }

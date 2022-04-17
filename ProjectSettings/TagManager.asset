@@ -17,6 +17,7 @@ TagManager:
   - SnakeExit
   - Apple
   - SlimeParticle
+  - Box
   layers:
   - Default
   - TransparentFX
