@@ -8,28 +8,37 @@ using UnityEngine.Tilemaps;
 
 public class PlayerController : MonoBehaviour
 {
-    public float slimeCap = 100; // Slime capacity
-
+    [Header("Slime")]
+    public float slimeCap; // Slime capacity
     public float slime;
+    public RectTransform emptySlimeBar;
+    public RectTransform slimeBar;
+    public CardAnim tempCard;
 
     private Animator initialFallAnim;
-
-    public RectTransform emptySlimeBar;
-    private Transform slimeBar;
     private Rigidbody2D playerRb;
-    public CardAnim tempCard;
 
     public bool finishedOpenAnimation = false;
 
-    public int enterGroundCollision;
+    [Header("Health")]
+    public float maxHealth; // Slime capacity
+    public float health;
+    public RectTransform emptyHealthBar;
+    public RectTransform healthBar;
 
+    [Header("Player Info (Non-Mutable)")]
+    public int enterGroundCollision;
+    public Vector2 hitDirection;
+    public bool stunned;
+    public int moveDirection;
+    public bool isDead;
     public bool isHoldingMouse;
+
     private Camera cam;
     private Vector2 mousePos;
-
-    public bool isDead;
     private bool onSlime = false;
 
+    [Header("Level")]
     public Transform spawnPoint;
     public LevelManager currLevel;
     public GameObject globalLight;
@@ -37,16 +46,13 @@ public class PlayerController : MonoBehaviour
 
     int groundDetect = 0;
 
+    [Header("Morph")]
     public GameObject gooby;
+    public GameObject morphBubble;
+
     private GameObject currMorph;
     private MasterController currMorphController;
     private bool onMorphCard;
-    public GameObject morphBubble;
-
-    public Vector2 hitDirection;
-    public bool stunned;
-
-    public int moveDirection;
 
     //public GameObject particleEmitterObject;
 
@@ -58,11 +64,12 @@ public class PlayerController : MonoBehaviour
         initialFallAnim = GetComponent<Animator>();
         moveDirection = 1;
         //jumpParticle = particleEmitterObject.GetComponent<ParticleSystem>();
-        slimeBar = emptySlimeBar.GetChild(0);
         playerRb = GetComponent<Rigidbody2D>();
         cam = GameObject.Find("Main Camera").GetComponent<Camera>();
-        slime = 100;
+        slime = slimeCap;
         UpdateSlime(0);
+        health = maxHealth;
+        UpdateHealth(0);
         transform.position = spawnPoint.position;
         Physics2D.gravity = gravity * 9.8f;
         currMorphController = gooby.GetComponent<MasterController>();
@@ -76,7 +83,6 @@ public class PlayerController : MonoBehaviour
         }
         if(!initialFallAnim.GetCurrentAnimatorStateInfo(0).IsName("InitialFall"))
         {
-            
             finishedOpenAnimation = true;
         }
     }
@@ -86,8 +92,17 @@ public class PlayerController : MonoBehaviour
         slime += amount;
         slime = Mathf.Clamp(slime, 0f, slimeCap);
         float scale = slime / slimeCap; // offset scale factor
-        slimeBar.localScale = new Vector2(slimeBar.localScale.x, scale);
-        slimeBar.localPosition = new Vector3(0, (scale-1) * 0.5f * emptySlimeBar.rect.height, 0);
+        slimeBar.sizeDelta = new Vector2(emptySlimeBar.rect.width * scale, slimeBar.rect.height);
+        slimeBar.localPosition = new Vector3((scale-1) * 0.5f * emptySlimeBar.rect.width, 0, 0);
+    }
+
+    public void UpdateHealth(float amount)
+    {
+        health += amount;
+        health = Mathf.Clamp(health, 0f, maxHealth);
+        float scale = health / maxHealth; // offset scale factor
+        healthBar.sizeDelta = new Vector2(emptyHealthBar.rect.width * scale, healthBar.rect.height);
+        healthBar.localPosition = new Vector3((scale - 1) * 0.5f * emptyHealthBar.rect.width, 0, 0);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -174,6 +189,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator MorphRoutine(GameObject newMorph)
     {
+        UpdateSlime(-25);
         float bubbleSize = newMorph.GetComponent<MasterController>().morphSize;
         morphBubble.transform.localScale = new Vector3(bubbleSize, bubbleSize, 1);
         morphBubble.SetActive(true);
@@ -206,7 +222,7 @@ public class PlayerController : MonoBehaviour
 
     public void Hit(Vector2 force, int damage, float stunTimer)
     {
-        UpdateSlime(-damage);
+        UpdateHealth(-damage);
         if(damage > 0)
         {
             StartCoroutine(SlowTime());

@@ -15,7 +15,7 @@ public class PickUpCard : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && player.slime >= 25)
         {
             Morph();
         }

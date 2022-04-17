@@ -847,7 +847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9119722913134960024, guid: 96a288dd7ab85ce469529097efc7869e, type: 3}
       propertyPath: jumpForce
-      value: 14
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 9119722913134960024, guid: 96a288dd7ab85ce469529097efc7869e, type: 3}
       propertyPath: playerParent
@@ -1362,20 +1362,25 @@ MonoBehaviour:
   slimeCap: 100
   slime: 0
   emptySlimeBar: {fileID: 238345404}
+  slimeBar: {fileID: 0}
   tempCard: {fileID: 785324}
   finishedOpenAnimation: 0
+  maxHealth: 0
+  health: 0
+  emptyHealthBar: {fileID: 0}
+  healthBar: {fileID: 0}
   enterGroundCollision: 0
-  isHoldingMouse: 0
+  hitDirection: {x: 0, y: 0}
+  stunned: 0
+  moveDirection: 0
   isDead: 0
+  isHoldingMouse: 0
   spawnPoint: {fileID: 145200923}
   currLevel: {fileID: 591516697}
   globalLight: {fileID: 1326847317}
   playerLight: {fileID: 169818040}
   gooby: {fileID: 2139589872}
   morphBubble: {fileID: 1401343235}
-  hitDirection: {x: 0, y: 0}
-  stunned: 0
-  moveDirection: 0
 --- !u!50 &297948493
 Rigidbody2D:
   serializedVersion: 4
@@ -7982,7 +7987,7 @@ GameObject:
   - component: {fileID: 831085343}
   m_Layer: 6
   m_Name: Ground
-  m_TagString: RealGroundObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
