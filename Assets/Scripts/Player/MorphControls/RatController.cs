@@ -17,6 +17,8 @@ public class RatController : MasterController
     public float deceleration;
     private float wallRunSpeed;
 
+    private float ogScale;
+
 
     // Start is called before the first frame update
     new void Start()
@@ -29,6 +31,7 @@ public class RatController : MasterController
         jumping = false;
         wallRunSpeed = maxWallRunSpeed;
         playerRb.mass = 0.01f;
+        ogScale = transform.localScale.x;
     }
 
     // Update is called once per frame
@@ -53,7 +56,7 @@ public class RatController : MasterController
         float horizontal = Input.GetAxisRaw("Horizontal");
         if (!playerParent.stunned && !isAttacking)
         {
-            //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * wallDir, Mathf.Abs(transform.localScale.y) * Mathf.Sign(playerRb.velocity.y), transform.localScale.z);
+            transform.localScale = new Vector3(ogScale, ogScale, 1);
             if (wallDir == 0)
             {
                 ratAnim.getAnimator().SetBool("WallRun", false);
@@ -90,17 +93,21 @@ public class RatController : MasterController
                 wallRunSpeed -= Time.deltaTime * deceleration;
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    playerRb.AddForce(new Vector2(-wallDir * (5 + horizontal * 3), jumpForce), ForceMode2D.Impulse);
+                    playerRb.velocity = new Vector2(-wallDir * 10, 15);
                     jumping = true;
-                    transform.localScale = new Vector3(transform.localScale.x, Mathf.Abs(transform.localScale.y), transform.localScale.z);
+                    transform.localScale = new Vector3(transform.localScale.x, ogScale, transform.localScale.z);
                 }
 
-                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * wallDir, Mathf.Abs(transform.localScale.y) * Mathf.Sign(playerRb.velocity.y), transform.localScale.z);
+                if (!jumping)
+                {
+                    transform.localScale = new Vector3(ogScale, ogScale * Mathf.Sign(playerRb.velocity.y), transform.localScale.z);
+                    playerParent.SetDirection(wallDir);
+                }
 
                 if (horizontal != wallDir && onGround && !jumping)
                 {
                     playerRb.velocity = new Vector2(horizontal * currSpeed, playerRb.velocity.y);
-                    transform.localScale = new Vector3(transform.localScale.x, Mathf.Abs(transform.localScale.y), transform.localScale.z);
+                    transform.localScale = new Vector3(ogScale, ogScale, transform.localScale.z);
                 }
                 else if (!jumping && wallRunSpeed > 0)
                 {
@@ -120,6 +127,7 @@ public class RatController : MasterController
                 {
                     ratAnim.getAnimator().SetBool("WallRun", false);
                     ratAnim.PlayAnim("Idle", 4);
+                    transform.localScale = new Vector3(ogScale, ogScale, transform.localScale.z);
                 }
             }
         }
