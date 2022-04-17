@@ -1510,14 +1510,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slimeCap: 100
   slime: 0
-  emptySlimeBar: {fileID: 0}
-  slimeBar: {fileID: 0}
-  tempCard: {fileID: 0}
+  emptySlimeBar: {fileID: 1061432875}
+  slimeBar: {fileID: 2007780167}
+  tempCard: {fileID: 396978249}
   finishedOpenAnimation: 0
   maxHealth: 20
   health: 0
-  emptyHealthBar: {fileID: 0}
-  healthBar: {fileID: 0}
+  emptyHealthBar: {fileID: 1193555282}
+  healthBar: {fileID: 1362157183}
   enterGroundCollision: 0
   hitDirection: {x: 0, y: 0}
   stunned: 0
