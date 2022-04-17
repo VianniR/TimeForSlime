@@ -13,6 +13,7 @@ public class MorphManager : MonoBehaviour
     public string lastKilled;
     public GameObject currDNA;
     public CardAnim tempCard;
+    public Animator DNAHolder;
 
     private GameObject currMorph;
     private Rigidbody2D playerRb;
@@ -29,10 +30,12 @@ public class MorphManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q) && currMorph != null && !morphBubble.activeSelf)
         {
+            DNAHolder.Play("Q");
             StartCoroutine(Unmorph());
         }
         if (currDNA != null && Input.GetKeyDown(KeyCode.E) && player.slime >= 25)
         {
+            DNAHolder.Play("E");
             StartCoroutine(Morph(currDNA));
         }
     }

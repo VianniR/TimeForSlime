@@ -10,6 +10,8 @@ public class CardAnim : MonoBehaviour
 
     public Transform P2;
     public Transform playerCard;
+    public Transform DNAHolder;
+    public Image DNASprite;
     private Sprite playerCardSprite;
     public Sprite goobyCardSprite;
 
@@ -41,12 +43,14 @@ public class CardAnim : MonoBehaviour
         for(float t = 0; t <= 1; t+=0.1f)
         {
             Vector2 A = Vector2.Lerp(P1, P2.localPosition, t);
-            Vector2 B = Vector2.Lerp(P2.localPosition, playerCard.localPosition, t);
+            Vector2 B = Vector2.Lerp(P2.localPosition, DNAHolder.localPosition, t);
 
             transform.localPosition = Vector2.Lerp(A, B, t);
             yield return new WaitForSeconds(0.02f);
         }
-        transform.localPosition = defaultPos.position;
+        DNASprite.sprite = gameObject.GetComponent<Image>().sprite;
+        DNASprite.gameObject.SetActive(true);
+        transform.localPosition = defaultPos.localPosition;
     }
 
     public IEnumerator CardMorph()
