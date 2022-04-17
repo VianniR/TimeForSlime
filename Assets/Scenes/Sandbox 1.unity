@@ -88923,6 +88923,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SewerButton
       objectReference: {fileID: 0}
+    - target: {fileID: 8580760757204313921, guid: 8a91e3f9498f1f94b85a432c3d82dcef, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580760757204313921, guid: 8a91e3f9498f1f94b85a432c3d82dcef, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580760757204313921, guid: 8a91e3f9498f1f94b85a432c3d82dcef, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a91e3f9498f1f94b85a432c3d82dcef, type: 3}
 --- !u!1 &1962266953
