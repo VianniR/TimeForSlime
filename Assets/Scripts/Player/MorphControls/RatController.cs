@@ -28,6 +28,7 @@ public class RatController : MasterController
         scratchFX.thisTransform = playerParent.transform;
         jumping = false;
         wallRunSpeed = maxWallRunSpeed;
+        playerRb.mass = 0.01f;
     }
 
     // Update is called once per frame
@@ -52,6 +53,7 @@ public class RatController : MasterController
         float horizontal = Input.GetAxisRaw("Horizontal");
         if (!playerParent.stunned && !isAttacking)
         {
+            //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * wallDir, Mathf.Abs(transform.localScale.y) * Mathf.Sign(playerRb.velocity.y), transform.localScale.z);
             if (wallDir == 0)
             {
                 ratAnim.getAnimator().SetBool("WallRun", false);
@@ -90,15 +92,15 @@ public class RatController : MasterController
                 {
                     playerRb.AddForce(new Vector2(-wallDir * (5 + horizontal * 3), jumpForce), ForceMode2D.Impulse);
                     jumping = true;
-                    transform.localScale = new Vector3(transform.localScale.x, Mathf.Abs(transform.localScale.x), transform.localScale.z);
+                    transform.localScale = new Vector3(transform.localScale.x, Mathf.Abs(transform.localScale.y), transform.localScale.z);
                 }
 
-                transform.localScale = new Vector3(transform.localScale.x, Mathf.Abs(transform.localScale.x) * Mathf.Sign(playerRb.velocity.y), transform.localScale.z);
+                transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * wallDir, Mathf.Abs(transform.localScale.y) * Mathf.Sign(playerRb.velocity.y), transform.localScale.z);
 
                 if (horizontal != wallDir && onGround && !jumping)
                 {
                     playerRb.velocity = new Vector2(horizontal * currSpeed, playerRb.velocity.y);
-                    transform.localScale = new Vector3(transform.localScale.x, Mathf.Abs(transform.localScale.x), transform.localScale.z);
+                    transform.localScale = new Vector3(transform.localScale.x, Mathf.Abs(transform.localScale.y), transform.localScale.z);
                 }
                 else if (!jumping && wallRunSpeed > 0)
                 {

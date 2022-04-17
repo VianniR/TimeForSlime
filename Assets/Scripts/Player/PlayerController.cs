@@ -207,6 +207,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator Unmorph()
     {
+        playerRb.mass = 1;
         float bubbleSize = currMorphController.morphSize;
         morphBubble.transform.localScale = new Vector3(bubbleSize, bubbleSize, 1);
         morphBubble.SetActive(true);
