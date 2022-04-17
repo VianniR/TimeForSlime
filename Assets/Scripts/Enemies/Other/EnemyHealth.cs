@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     public float health;
     private bool isDead;
     public GameObject enemyCard;
+    public GameObject slimeball;
 
     private PlayerController player;
     private MasterEnemy enemyScript;
@@ -50,7 +51,9 @@ public class EnemyHealth : MonoBehaviour
     IEnumerator Death()
     {
         yield return new WaitForSeconds(0.1f);
-        if(!morphManager.lastKilled.Equals(name)){
+        Rigidbody2D slimeRb = Instantiate(slimeball, transform.position, slimeball.transform.rotation).GetComponent<Rigidbody2D>();
+        slimeRb.velocity = new Vector2(Random.Range(-6, 6), Random.Range(1, 8));
+        if (!morphManager.lastKilled.Equals(name)){
             //morphManager.lastKilled = name;
             Instantiate(enemyCard, transform.position, enemyCard.transform.rotation);
         }

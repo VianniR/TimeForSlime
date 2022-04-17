@@ -33,7 +33,7 @@ public class MorphManager : MonoBehaviour
             DNAHolder.Play("Q");
             StartCoroutine(Unmorph());
         }
-        if (currDNA != null && Input.GetKeyDown(KeyCode.E) && player.slime >= 25)
+        if (currDNA != null && Input.GetKeyDown(KeyCode.E) && player.slime >= 25 && currMorph == null)
         {
             DNAHolder.Play("E");
             StartCoroutine(Morph(currDNA));

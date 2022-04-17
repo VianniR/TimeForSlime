@@ -698,11 +698,6 @@ RectTransform:
   m_AnchoredPosition: {x: 178, y: 34}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!4 &190845276 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8106579492533200130, guid: 20121825b54a4dc4cbd244b9ef918c07, type: 3}
-  m_PrefabInstance: {fileID: 313649530}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &227474081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1725,12 +1720,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.9983177, y: 2.280717, z: -10.666698}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -30.001682, y: -4.719283, z: -10.666698}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 190845276}
-  m_RootOrder: 6
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -7233,7 +7228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 639144265}
-  cam: {fileID: 0}
+  cam: {fileID: 519420031}
   P2: {fileID: 176860026}
   playerCard: {fileID: 1979417630}
   DNAHolder: {fileID: 1107282946}
@@ -94345,10 +94340,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6143693933759609472, guid: 65d32cae5398bd7418ad0227ed030c0f, type: 3}
+      propertyPath: tempCard
+      value: 
+      objectReference: {fileID: 736683429}
+    - target: {fileID: 6143693933759609472, guid: 65d32cae5398bd7418ad0227ed030c0f, type: 3}
+      propertyPath: DNAHolder
+      value: 
+      objectReference: {fileID: 1107282947}
+    - target: {fileID: 6143693933759609475, guid: 65d32cae5398bd7418ad0227ed030c0f, type: 3}
+      propertyPath: slimeBar
+      value: 
+      objectReference: {fileID: 227474082}
+    - target: {fileID: 6143693933759609475, guid: 65d32cae5398bd7418ad0227ed030c0f, type: 3}
+      propertyPath: tempCard
+      value: 
+      objectReference: {fileID: 736683429}
     - target: {fileID: 6143693933759609475, guid: 65d32cae5398bd7418ad0227ed030c0f, type: 3}
       propertyPath: currLevel
       value: 
       objectReference: {fileID: 591516697}
+    - target: {fileID: 6143693933759609475, guid: 65d32cae5398bd7418ad0227ed030c0f, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1947499142}
     - target: {fileID: 6143693933759609475, guid: 65d32cae5398bd7418ad0227ed030c0f, type: 3}
       propertyPath: spawnPoint
       value: 
@@ -94357,6 +94372,14 @@ PrefabInstance:
       propertyPath: globalLight
       value: 
       objectReference: {fileID: 1326847317}
+    - target: {fileID: 6143693933759609475, guid: 65d32cae5398bd7418ad0227ed030c0f, type: 3}
+      propertyPath: emptySlimeBar
+      value: 
+      objectReference: {fileID: 1807035542}
+    - target: {fileID: 6143693933759609475, guid: 65d32cae5398bd7418ad0227ed030c0f, type: 3}
+      propertyPath: emptyHealthBar
+      value: 
+      objectReference: {fileID: 1216996668}
     - target: {fileID: 6143693933759609476, guid: 65d32cae5398bd7418ad0227ed030c0f, type: 3}
       propertyPath: m_RootOrder
       value: 15

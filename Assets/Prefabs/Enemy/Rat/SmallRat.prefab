@@ -153,9 +153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Rat
-  morphManager: {fileID: 0}
   maxHealth: 4
+  health: 0
   enemyCard: {fileID: 5411045882688975710, guid: 0f68efe1083888947a027a92e2221656, type: 3}
+  slimeball: {fileID: 8451045992843006095, guid: 5cb7490362eb194489015a31bf47f0d0, type: 3}
 --- !u!114 &745929239266558223
 MonoBehaviour:
   m_ObjectHideFlags: 0

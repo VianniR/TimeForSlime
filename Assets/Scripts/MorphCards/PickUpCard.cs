@@ -26,6 +26,7 @@ public class PickUpCard : MonoBehaviour
 
     public void AssignDNA()
     {
+        morphManager.lastKilled = name;
         morphManager.currDNA = morph;
         tempCard.PlayCardAnim(transform.parent.gameObject.GetComponent<SpriteRenderer>().sprite, transform.position, morphCard);
         //player.Morph(morph);

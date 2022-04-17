@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7832607179293039034}
   - component: {fileID: 963571539383056229}
   - component: {fileID: 5532703028317814397}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Press
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: E - Morph
+  m_text: '[F]'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76309147a6bf30d45b0f430647fbeaa9, type: 2}
   m_sharedMaterial: {fileID: -1979835440426670440, guid: 76309147a6bf30d45b0f430647fbeaa9, type: 2}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: 7501123786551791768}
   - component: {fileID: 8973404994426652638}
   - component: {fileID: 3203349191856335253}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HoverCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 2.52, y: 0.64}
+  m_AnchoredPosition: {x: 3.25, y: 0.62}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3274431999828267467
@@ -261,7 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6299841919684898693}
   - component: {fileID: 6875396985855455977}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Point Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25.34, y: -7.4}
+  m_AnchoredPosition: {x: -32.34, y: -6.45}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6875396985855455977
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 5411045882688975704}
   - component: {fileID: 5411045882688975711}
   - component: {fileID: 4072752588655489556}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: BlobCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
