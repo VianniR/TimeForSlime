@@ -13,22 +13,20 @@ public class PickUpCard : MonoBehaviour
     private void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
-        morphManager = GameObject.Find("Morph Manager").GetComponent<MorphManager>();
+        morphManager = GameObject.Find("Player").GetComponent<MorphManager>();
         tempCard = player.tempCard;
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && player.slime >= 25)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            morphManager.lastKilled = name;
-            player.slime += 25;
-            Morph();
-            morphManager.Morph();
+            AssignDNA();
         }
     }
 
-    public void Morph()
+    public void AssignDNA()
     {
+        morphManager.currDNA = morph;
         tempCard.PlayCardAnim(transform.parent.gameObject.GetComponent<SpriteRenderer>().sprite, transform.position, morphCard);
         //player.Morph(morph);
         Destroy(transform.parent.gameObject);

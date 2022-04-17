@@ -46,13 +46,8 @@ public class PlayerController : MonoBehaviour
 
     int groundDetect = 0;
 
-    [Header("Morph")]
-    public GameObject gooby;
-    public GameObject morphBubble;
+    public MasterController currMorphController;
 
-    private GameObject currMorph;
-    private MasterController currMorphController;
-    private bool onMorphCard;
 
     //public GameObject particleEmitterObject;
 
@@ -72,15 +67,10 @@ public class PlayerController : MonoBehaviour
         UpdateHealth(0);
         transform.position = spawnPoint.position;
         Physics2D.gravity = gravity * 9.8f;
-        currMorphController = gooby.GetComponent<MasterController>();
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q) && currMorph != null && !onMorphCard && !morphBubble.activeSelf)
-        {
-            StartCoroutine(Unmorph());
-        }
         if(!initialFallAnim.GetCurrentAnimatorStateInfo(0).IsName("InitialFall"))
         {
             finishedOpenAnimation = true;
@@ -116,17 +106,6 @@ public class PlayerController : MonoBehaviour
         {
             NewSpawn spawn = other.gameObject.GetComponent<NewSpawn>();
             spawnPoint = spawn.spawnPoint;
-        }
-        else if (other.gameObject.CompareTag("MorphCard"))
-        {
-            onMorphCard = true;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("MorphCard"))
-        {
-            onMorphCard = false;
         }
     }
 
@@ -182,45 +161,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(time);
     }
 
-    public void Morph(GameObject newMorph)
-    {
-        StartCoroutine(MorphRoutine(newMorph));
-    }
-
-    public IEnumerator MorphRoutine(GameObject newMorph)
-    {
-        UpdateSlime(-25);
-        float bubbleSize = newMorph.GetComponent<MasterController>().morphSize;
-        morphBubble.transform.localScale = new Vector3(bubbleSize, bubbleSize, 1);
-        morphBubble.SetActive(true);
-        yield return new WaitForSeconds(0.25f);
-        if (currMorph != null)
-        {
-            Destroy(currMorph);
-        }
-        gooby.SetActive(false);
-        currMorph = Instantiate(newMorph, transform);
-        currMorphController = currMorph.GetComponent<MasterController>();
-        yield return new WaitForSeconds(0.4f);
-        morphBubble.SetActive(false);
-    }
-
-    public IEnumerator Unmorph()
-    {
-        playerRb.mass = 1;
-        float bubbleSize = currMorphController.morphSize;
-        morphBubble.transform.localScale = new Vector3(bubbleSize, bubbleSize, 1);
-        morphBubble.SetActive(true);
-        StartCoroutine(tempCard.CardUnmorph());
-        yield return new WaitForSeconds(0.25f);
-        Destroy(currMorph);
-        currMorph = null;
-        currMorphController = gooby.GetComponent<MasterController>();
-        gooby.SetActive(true);
-        yield return new WaitForSeconds(0.4f);
-        morphBubble.SetActive(false);
-    }
-
     public void Hit(Vector2 force, int damage, float stunTimer)
     {
         UpdateHealth(-damage);
@@ -252,10 +192,5 @@ public class PlayerController : MonoBehaviour
     {
         moveDirection = newDir;
         transform.localScale = new Vector3(moveDirection, transform.localScale.y, transform.localScale.z);
-    }
-
-    public GameObject getCurrMorph()
-    {
-        return currMorph;
     }
 }

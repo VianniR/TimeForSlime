@@ -32,10 +32,10 @@ public class CardAnim : MonoBehaviour
 
         transform.localPosition = WorldObject_ScreenPosition;
 
-        StartCoroutine(CardTransform());
+        StartCoroutine(AssignDNA());
     }
 
-    IEnumerator CardTransform()
+    IEnumerator AssignDNA()
     {
         Vector2 P1 = transform.localPosition;
         for(float t = 0; t <= 1; t+=0.1f)
@@ -47,7 +47,10 @@ public class CardAnim : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
         }
         transform.localPosition = defaultPos.position;
+    }
 
+    public IEnumerator CardMorph()
+    {
         playerCardAnim.Play("Flip");
         yield return new WaitForSeconds(0.208f);
         frontCard.SetAsFirstSibling();

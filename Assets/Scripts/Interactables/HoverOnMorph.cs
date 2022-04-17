@@ -6,11 +6,11 @@ public class HoverOnMorph : MonoBehaviour
 {
     public GameObject enabledObject;
     public string morphScript;
-    private PlayerController player;
+    private MorphManager player;
 
     private void Start()
     {
-        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        player = GameObject.Find("Player").GetComponent<MorphManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

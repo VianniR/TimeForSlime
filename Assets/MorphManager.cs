@@ -5,42 +5,77 @@ using UnityEngine;
 public class MorphManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public string lastKilled;
-    public GameObject ratMorph;
-
-    public GameObject snakeMorph;
-    public Sprite morphCard;
     private PlayerController player;
-    private CardAnim tempCard;
+
+    [Header("Morph")]
+    public GameObject gooby;
+    public GameObject morphBubble;
+    public string lastKilled;
+    public GameObject currDNA;
+    public CardAnim tempCard;
+
+    private GameObject currMorph;
+    private Rigidbody2D playerRb;
+
     void Start()
     {
-        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        player = GetComponent<PlayerController>();
+        player.currMorphController = gooby.GetComponent<MasterController>();
+        playerRb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (Input.GetKeyDown(KeyCode.E) && player.slime >= 25)
+        if (Input.GetKeyDown(KeyCode.Q) && currMorph != null && !morphBubble.activeSelf)
         {
-            Morph();
+            StartCoroutine(Unmorph());
+        }
+        if (currDNA != null && Input.GetKeyDown(KeyCode.E) && player.slime >= 25)
+        {
+            StartCoroutine(Morph(currDNA));
         }
     }
 
-    public void Morph()
+    public IEnumerator Morph(GameObject newMorph)
     {
-        //tempCard.PlayCardAnim(transform.parent.gameObject.GetComponent<SpriteRenderer>().sprite, transform.position, morphCard);
-        if(lastKilled.Equals("Rat"))
-        {
-            player.Morph(ratMorph);
-        }
+        player.UpdateSlime(-25);
+        float bubbleSize = newMorph.GetComponent<MasterController>().morphSize;
+        morphBubble.transform.localScale = new Vector3(bubbleSize, bubbleSize, 1);
+        morphBubble.SetActive(true);
+        StartCoroutine(tempCard.CardMorph());
 
-        else if(lastKilled.Equals("Snake"))
+        yield return new WaitForSeconds(0.25f);
+        if (currMorph != null)
         {
-            player.Morph(snakeMorph);
+            Destroy(currMorph);
         }
-        //Destroy(transform.parent.gameObject);
+        gooby.SetActive(false);
+        currMorph = Instantiate(newMorph, transform);
+        player.currMorphController = currMorph.GetComponent<MasterController>();
+        yield return new WaitForSeconds(0.4f);
+        morphBubble.SetActive(false);
     }
 
-  
+    public IEnumerator Unmorph()
+    {
+        playerRb.mass = 1;
+        float bubbleSize = player.currMorphController.morphSize;
+        morphBubble.transform.localScale = new Vector3(bubbleSize, bubbleSize, 1);
+        morphBubble.SetActive(true);
+        StartCoroutine(tempCard.CardUnmorph());
+
+        yield return new WaitForSeconds(0.25f);
+        Destroy(currMorph);
+        currMorph = null;
+        player.currMorphController = gooby.GetComponent<MasterController>();
+        gooby.SetActive(true);
+        yield return new WaitForSeconds(0.4f);
+        morphBubble.SetActive(false);
+    }
+
+    public GameObject getCurrMorph()
+    {
+        return currMorph;
+    }
 }

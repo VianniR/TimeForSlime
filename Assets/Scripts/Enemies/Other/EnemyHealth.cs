@@ -21,7 +21,7 @@ public class EnemyHealth : MonoBehaviour
         isDead = false;
         health = maxHealth;
         player = GameObject.Find("Player").GetComponent<PlayerController>();
-        morphManager = GameObject.Find("Morph Manager").GetComponent<MorphManager>();
+        morphManager = GameObject.Find("Player").GetComponent<MorphManager>();
         enemyScript = gameObject.GetComponent<MasterEnemy>();
         
     }
@@ -49,9 +49,8 @@ public class EnemyHealth : MonoBehaviour
 
     IEnumerator Death()
     {
-        
         yield return new WaitForSeconds(0.1f);
-        if(morphManager.lastKilled.Equals(name) == false){
+        if(!morphManager.lastKilled.Equals(name)){
             //morphManager.lastKilled = name;
             Instantiate(enemyCard, transform.position, enemyCard.transform.rotation);
         }
