@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  jumpForce: 20
+  jumpForce: 0
   onGround: 0
   playerParent: {fileID: 0}
   morphSize: 2
@@ -222,6 +222,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   referenceCollider: {fileID: 535891552369082746}
+  drawLine: 0
   width: 0
   height: 0
 --- !u!61 &535891552369082746
