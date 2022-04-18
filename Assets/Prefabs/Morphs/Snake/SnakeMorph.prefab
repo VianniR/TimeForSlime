@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 6590732047139002908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 0.68586}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 0.68586}
   m_Children:
   - {fileID: 6380615484008601299}
   m_Father: {fileID: 0}
@@ -84,6 +84,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   referenceCollider: {fileID: 3521675214977235208}
+  drawLine: 0
   width: 0
   height: 0
 --- !u!212 &7836113821382184242
@@ -177,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jumpForce: 0
+  jumpSound: {fileID: 0}
   onGround: 0
   playerParent: {fileID: 0}
   morphSize: 4
@@ -187,7 +189,7 @@ MonoBehaviour:
   playerSprite: {fileID: 7836113821382184242}
   attackCooldown: 0.6
   invincColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 0.78039217}
-  poisonProjectile: {fileID: 4222980641043688932, guid: c69b267dc703da645930794022af3958, type: 3}
+  poisonProjectile: {fileID: 4222980641043688932, guid: d39f94e22be75014380cc44ac835666d, type: 3}
   projectileSpeed: 7
   poisonPos: {fileID: 6380615484008601299}
   snakeAnim: {fileID: 142081242003663141}
