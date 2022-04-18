@@ -8,7 +8,6 @@ public class GoobyController : MasterController
 
     public Animator weaponAnim;
 
-    private Camera cam;
     public GameObject swordCollider;
     float swordUpTimer;
     int swordDir;
@@ -19,7 +18,6 @@ public class GoobyController : MasterController
     new void Start()
     {
         base.Start();
-        cam = GameObject.Find("Main Camera").GetComponent<Camera>();
         swordDir = 0;
     }
 
@@ -32,9 +30,7 @@ public class GoobyController : MasterController
 
         if (Input.GetKey(KeyCode.Mouse0) && !isAttacking && !playerParent.stunned)
         {
-            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            float angle = Mathf.Atan2(mousePos.y, mousePos.x);
-            StartCoroutine(EnableCollider(angle));
+            StartCoroutine(EnableCollider());
         }
 
         
@@ -49,12 +45,10 @@ public class GoobyController : MasterController
         }
     }
 
-    IEnumerator EnableCollider(float angle)
+    IEnumerator EnableCollider()
     {
         swordUpTimer = 0.75f;
         isAttacking = true;
-        if (angle < 0)
-            angle += (2 * Mathf.PI);
 
 
         playerParent.hitDirection = new Vector2(playerParent.moveDirection, 0);
