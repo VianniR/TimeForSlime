@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
-    public LevelReset[] resets;
+    public UnityEvent resets;
     public GameObject slimePrefab;
 
     public virtual void ResetLevel()
     {
-        foreach(LevelReset r in resets)
-        {
-            r.OnLevelReset();
-        }
+        resets.Invoke();
     }
 
     void Start()

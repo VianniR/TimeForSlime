@@ -56,7 +56,7 @@ MonoBehaviour:
   slimeBar: {fileID: 0}
   tempCard: {fileID: 0}
   finishedOpenAnimation: 0
-  maxHealth: 20
+  maxHealth: 10
   health: 0
   emptyHealthBar: {fileID: 0}
   healthBar: {fileID: 0}

@@ -52,7 +52,7 @@ public class EnemyHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
         Rigidbody2D slimeRb = Instantiate(slimeball, transform.position, slimeball.transform.rotation).GetComponent<Rigidbody2D>();
-        slimeRb.velocity = new Vector2(Random.Range(-6, 6), Random.Range(1, 8));
+        slimeRb.velocity = new Vector2(Random.Range(-3, 3), Random.Range(1, 6));
         if (!morphManager.lastKilled.Equals(name)){
             //morphManager.lastKilled = name;
             Instantiate(enemyCard, transform.position, enemyCard.transform.rotation);
