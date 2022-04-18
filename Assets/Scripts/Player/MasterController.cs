@@ -33,6 +33,7 @@ public class MasterController : MonoBehaviour
     public float gravity;
     public SpriteRenderer playerSprite;
 
+
     public float attackCooldown;
     protected float initWidth;
 
@@ -63,11 +64,15 @@ public class MasterController : MonoBehaviour
             if (playerRb.velocity.x == horizontal * speed)
             {
                 horizontal = Input.GetAxisRaw("Horizontal");
+               
             }
             else
             {
                 horizontal = Input.GetAxis("Horizontal") * 2;
+                
             }
+
+            
         }
 
             playerRb.velocity = new Vector2(Mathf.Clamp(horizontal * speed, -speed, speed), playerRb.velocity.y);
@@ -213,4 +218,6 @@ public class MasterController : MonoBehaviour
         if (Mathf.Approximately(playerRb.velocity.x, 0) && onWall)
             playerRb.position += new Vector2(x * playerParent.moveDirection, 0);
     }
+
+
 }

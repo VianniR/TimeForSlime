@@ -18,6 +18,7 @@ TagManager:
   - Apple
   - SlimeParticle
   - Box
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
