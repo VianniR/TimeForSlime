@@ -78,7 +78,8 @@ public class Snake : MasterEnemy
         GameObject proj = Instantiate(poisonProjectile, poisonPos.position, poisonProjectile.transform.rotation);
         proj.GetComponent<KnockbackData>().targetTransform = (transform);
 
-        proj.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * projectileSpeed, 6f);
+        float dist = player.transform.position.x - poisonPos.position.x;
+        proj.GetComponent<Rigidbody2D>().velocity = new Vector2(dist * 0.8f, 6f);
 
 
         yield return new WaitForSeconds(0.25f);
