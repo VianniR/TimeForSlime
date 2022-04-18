@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SwampTarget
+  m_Controller: {fileID: 9100000, guid: 37c9614bb8601ef4c9478b010d94d1c3, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 791fe3480a46a604bb064ad1237842d3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1ed340c19d029a748ad8a7f962d99ca4, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 06c2fdb4afaf0df4093afc9785204b2a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c3d6226a74f62404181b0f679b402925, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: deb65a1a3b3317c4b94fdd956b4a63bf, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6391a827d3c7f39439f7d9995d2affdb, type: 2}

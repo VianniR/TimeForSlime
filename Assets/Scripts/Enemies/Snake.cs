@@ -77,7 +77,10 @@ public class Snake : MasterEnemy
         yield return new WaitForSeconds(0.15f);
         GameObject proj = Instantiate(poisonProjectile, poisonPos.position, poisonProjectile.transform.rotation);
         proj.GetComponent<KnockbackData>().targetTransform = (transform);
-        proj.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * projectileSpeed, 5f);
+
+        proj.GetComponent<Rigidbody2D>().velocity = new Vector2(direction * projectileSpeed, 6f);
+
+
         yield return new WaitForSeconds(0.25f);
         isAttacking = false;
         StartCoroutine(AttackCooldown());

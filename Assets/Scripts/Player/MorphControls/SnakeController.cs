@@ -50,6 +50,7 @@ public class SnakeController : MasterController
         proj.tag = "PlayerWeapon";
         proj.layer = 8;
         proj.GetComponent<Rigidbody2D>().velocity = new Vector2(playerParent.moveDirection * projectileSpeed, 5f);
+        proj.GetComponent<KnockbackData>().targetTransform = transform;
         yield return new WaitForSeconds(0.25f);
         isAttacking = false;
         yield return new WaitForSeconds(attackCooldown);
