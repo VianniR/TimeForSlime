@@ -10,11 +10,15 @@ public class SnakeController : MasterController
     public float projectileSpeed;
     public Transform poisonPos;
     public AnimationController snakeAnim;
+    private Camera mainCam;
+
+    Vector3 mousePos;
     // Update is called once per frame
     new void Start()
     {
         base.Start();
         canAttack = true;
+        mainCam = Camera.main;
     }
     void Update()
     {
@@ -37,6 +41,7 @@ public class SnakeController : MasterController
 
         if (canAttack && Input.GetKeyDown(KeyCode.Mouse0))
         {
+            mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition, Camera.MonoOrStereoscopicEye.Mono);
             StartCoroutine(SpitPoison());
         }
     }
@@ -45,11 +50,15 @@ public class SnakeController : MasterController
         snakeAnim.PlayAnim("Attack", 3);
         canAttack = false;
         isAttacking = true;
+        Vector2 spitDir = mousePos - transform.position;
+        spitDir.Normalize();
+        playerParent.SetDirection((int)Mathf.Sign(spitDir.x));
         yield return new WaitForSeconds(0.15f);
+
         GameObject proj = Instantiate(poisonProjectile, poisonPos.position, poisonProjectile.transform.rotation);
         proj.tag = "PlayerWeapon";
         proj.layer = 8;
-        proj.GetComponent<Rigidbody2D>().velocity = new Vector2(playerParent.moveDirection * projectileSpeed, 6f);
+        proj.GetComponent<Rigidbody2D>().velocity = spitDir * projectileSpeed;
         proj.GetComponent<KnockbackData>().targetTransform = transform;
         yield return new WaitForSeconds(0.25f);
         isAttacking = false;

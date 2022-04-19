@@ -118,12 +118,12 @@ public class SnakeGame : MonoBehaviour
 
     public void SpawnSnake(Transform entrance)
     {
-        transform.position = entrance.position;
         gameObject.SetActive(true);
+        transform.position = entrance.position;
         lastEntrance = player.transform.position;
         player.SetActive(false);
-        snakeTiles.Add(SpawnNewTail(entrance.position, false, Vector2.left));
-        foreach(Transform t in appleSpawns)
+        snakeTiles.Add(SpawnNewTail(entrance.position, false, direction));
+        foreach (Transform t in appleSpawns)
         {
             if(t.childCount == 0)
             {
@@ -135,7 +135,6 @@ public class SnakeGame : MonoBehaviour
     public void SetDirection(float angle)
     {
         direction = new Vector2(Mathf.Round(Mathf.Cos(angle * Mathf.Deg2Rad)), Mathf.Round(Mathf.Sin(angle * Mathf.Deg2Rad)));
-        transform.position = CellToRealWorld(tilemapPos);
     }
 
     Vector3 CellToRealWorld(Vector3Int pos)

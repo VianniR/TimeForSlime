@@ -24,7 +24,7 @@ public class Button : LevelReset
 
     private void Update()
     {
-        bool pressed = Physics2D.BoxCast(refereceCollider.bounds.center, refereceCollider.bounds.size, 0, Vector2.up, .1f, detectionLayers);
+        bool pressed = Physics2D.BoxCast(refereceCollider.bounds.center, refereceCollider.bounds.size, 0, transform.up, .1f, detectionLayers);
 
 
         if (pressed && !triggered)

@@ -190,7 +190,7 @@ MonoBehaviour:
   attackCooldown: 0.6
   invincColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 0.78039217}
   poisonProjectile: {fileID: 4222980641043688932, guid: d39f94e22be75014380cc44ac835666d, type: 3}
-  projectileSpeed: 7
+  projectileSpeed: 10
   poisonPos: {fileID: 6380615484008601299}
   snakeAnim: {fileID: 142081242003663141}
 --- !u!95 &1212040742856031366
