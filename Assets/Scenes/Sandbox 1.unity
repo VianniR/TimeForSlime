@@ -1547,7 +1547,6 @@ RectTransform:
   - {fileID: 736683428}
   - {fileID: 176860026}
   - {fileID: 1263851852}
-  - {fileID: 672577299}
   m_Father: {fileID: 639144266}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1918,7 +1917,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3c67673d087c049b3d7d87bcba8584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resets: []
+  resets:
+    m_PersistentCalls:
+      m_Calls: []
   slimePrefab: {fileID: 8451045992843006095, guid: 5cb7490362eb194489015a31bf47f0d0, type: 3}
 --- !u!4 &591516698
 Transform:
@@ -2043,6 +2044,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 426277435}
+  - {fileID: 672577299}
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2157,8 +2159,8 @@ RectTransform:
   m_Children:
   - {fileID: 741661546}
   - {fileID: 1643983758}
-  m_Father: {fileID: 426277435}
-  m_RootOrder: 7
+  m_Father: {fileID: 639144266}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -88221,9 +88223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1779937768}
-  - component: {fileID: 1779937767}
   - component: {fileID: 1779937769}
-  - component: {fileID: 1779937770}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -88231,27 +88231,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1779937767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1779937766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddfb8633e7a5b59429eb049e2621aaa0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelAreas:
-  - {fileID: 0}
-  - {fileID: 591516696}
-  allLevels:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  player: {fileID: 0}
-  playerScript: {fileID: 0}
 --- !u!4 &1779937768
 Transform:
   m_ObjectHideFlags: 0
@@ -88278,26 +88257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9790cb7bb1f09c4b94d7d6897a08579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EscapeMenu: {fileID: 0}
+  EscapeMenu: {fileID: 672577298}
   PlayerMenu: {fileID: 0}
   currLevelNum: 0
---- !u!114 &1779937770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1779937766}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2c8dee2df601df47affeddc351f6a86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gooby: {fileID: 0}
-  player: {fileID: 0}
-  initialFallCam: {fileID: 0}
-  cam1: {fileID: 0}
-  masterScript: {fileID: 0}
 --- !u!114 &1788425779 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3141450407248778592, guid: 03b770bd26e565244a0b1a67c250b258, type: 3}

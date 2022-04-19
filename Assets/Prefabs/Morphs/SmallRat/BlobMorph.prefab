@@ -191,6 +191,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   jumpForce: 0
+  jumpSound: {fileID: 0}
   onGround: 0
   playerParent: {fileID: 0}
   morphSize: 2
@@ -200,7 +201,7 @@ MonoBehaviour:
   gravity: 12
   playerSprite: {fileID: 6393868692279646548}
   attackCooldown: 0.5
-  invincColor: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 0.7882353}
+  invincColor: {r: 0.67058825, g: 0.67058825, b: 0.67058825, a: 0.50980395}
   attackCollider: {fileID: 5048432854698750445}
   ratAnim: {fileID: 1886869396920635354}
   scratchFX: {fileID: 3748226186708282190}

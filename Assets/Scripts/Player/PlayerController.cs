@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
     public float health;
     public RectTransform emptyHealthBar;
     public RectTransform healthBar;
+    public GameObject deathAnim;
+    public Animator deathScreen;
 
     [Header("Player Info (Non-Mutable)")]
     public int enterGroundCollision;
@@ -39,10 +42,9 @@ public class PlayerController : MonoBehaviour
     private bool onSlime = false;
 
     [Header("Level")]
-    public Transform spawnPoint;
     public LevelManager currLevel;
     public GameObject globalLight;
-    public Transform playerLight;
+    public Light2D playerLight;
 
     int groundDetect = 0;
 
@@ -65,7 +67,6 @@ public class PlayerController : MonoBehaviour
         UpdateSlime(0);
         health = maxHealth;
         UpdateHealth(0);
-        transform.position = spawnPoint.position;
         Physics2D.gravity = gravity * 9.8f;
     }
 
@@ -93,6 +94,10 @@ public class PlayerController : MonoBehaviour
         float scale = health / maxHealth; // offset scale factor
         healthBar.sizeDelta = new Vector2(emptyHealthBar.rect.width * scale, healthBar.rect.height);
         healthBar.localPosition = new Vector3((scale - 1) * 0.5f * emptyHealthBar.rect.width, 0, 0);
+        if(health == 0)
+        {
+            StartCoroutine(Death());
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -105,7 +110,6 @@ public class PlayerController : MonoBehaviour
         else if (other.gameObject.CompareTag("SpawnPoint"))
         {
             NewSpawn spawn = other.gameObject.GetComponent<NewSpawn>();
-            spawnPoint = spawn.spawnPoint;
         }
     }
 
@@ -114,11 +118,13 @@ public class PlayerController : MonoBehaviour
     {
         globalLight.SetActive(false);
         playerLight.gameObject.SetActive(true);
-        for (float t = 0; t < time + 0.02f; t += 0.02f)
+        float t = 0;
+        while (t <= time)
         {
-            float size = (1 - t / time) * 100;
-            playerLight.localScale = new Vector3(size, size, 1);
-            yield return new WaitForSeconds(0.02f);
+            float size = (1 - t / time);
+            playerLight.pointLightOuterRadius = size;
+            yield return new WaitForEndOfFrame();
+            t += Time.deltaTime;
         }
     }
     public IEnumerator LightGrow(float time)
@@ -126,25 +132,31 @@ public class PlayerController : MonoBehaviour
         for (float t = 0; t < time + 0.02f; t += 0.02f)
         {
             float size = (t / time) * 100;
-            playerLight.localScale = new Vector3(size, size, 1);
+            playerLight.pointLightOuterRadius = size;
             yield return new WaitForSeconds(0.02f);
         }
         playerLight.gameObject.SetActive(false);
         globalLight.gameObject.SetActive(true);
     }
 
+    public void Die()
+    {
+        StartCoroutine(Death());
+    }
     public IEnumerator Death()
     {
         isHoldingMouse = false;
         playerRb.velocity = Vector2.zero;
-        Physics2D.gravity = Vector2.zero;
         isDead = true;
+        playerRb.bodyType = RigidbodyType2D.Static;
+        currMorphController.gameObject.SetActive(false);
+        deathAnim.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        StartCoroutine(LightShrink(0.4f));
-        yield return new WaitForSeconds(0.8f);
+        deathScreen.Play("FadeOut");
+        yield return new WaitForSeconds(1);
 
-        UpdateSlime(100);
-        transform.position = spawnPoint.position;
+         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        /*UpdateSlime(100);
         currLevel.ResetLevel();
         onSlime = false;
 
@@ -153,7 +165,7 @@ public class PlayerController : MonoBehaviour
 
         isDead = false;
         gravity = new Vector2(0, -1);
-        Physics2D.gravity = gravity * 9.8f;
+        Physics2D.gravity = gravity * 9.8f;*/
     }
 
     public IEnumerator CameraTransfer(float time, Tilemap tilemap, TileBase doorTile, Vector3 topPos, Vector3 botPos)

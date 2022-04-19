@@ -15,7 +15,7 @@ public class LevelSelectSceneManager : MonoBehaviour
         {
             LoadOneLevel(1);
             player.position = allLevels[PlayerPrefs.GetInt("CurrLevel") - 1].position;
-            playerScript.spawnPoint = allLevels[PlayerPrefs.GetInt("Currlevel")].Find("Spawn");
+            //playerScript.spawnPoint = allLevels[PlayerPrefs.GetInt("Currlevel")].Find("Spawn");
         }
     }
 

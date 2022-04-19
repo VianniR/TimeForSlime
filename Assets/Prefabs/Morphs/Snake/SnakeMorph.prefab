@@ -188,7 +188,7 @@ MonoBehaviour:
   gravity: 12
   playerSprite: {fileID: 7836113821382184242}
   attackCooldown: 0.6
-  invincColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 0.78039217}
+  invincColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 0.50980395}
   poisonProjectile: {fileID: 4222980641043688932, guid: d39f94e22be75014380cc44ac835666d, type: 3}
   projectileSpeed: 10
   poisonPos: {fileID: 6380615484008601299}
