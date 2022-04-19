@@ -5,21 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class EndLevel : MonoBehaviour
 {
-    public float eventNum;
+    public int eventNum;
 
     private bool isPlayingAnim;
-    private PlayerController player;
+    public Animator lightAnim;
     // Start is called before the first frame update
     void Start()
     {
         isPlayingAnim = false;
-        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isPlayingAnim)
+        if (Input.GetKeyDown(KeyCode.F) && !isPlayingAnim)
         {
             StartCoroutine(LevelClose());
         }
@@ -28,12 +27,17 @@ public class EndLevel : MonoBehaviour
     IEnumerator LevelClose()
     {
         isPlayingAnim = true;
-        StartCoroutine(player.LightShrink(0.4f));
+        lightAnim.Play("FadeOut");
         yield return new WaitForSeconds(0.8f);
-        if (PlayerPrefs.GetFloat("Events") < eventNum)
+        if (PlayerPrefs.HasKey("LevelProgress"))
         {
-            PlayerPrefs.SetFloat("Events", eventNum);
+            if (PlayerPrefs.GetInt("LevelProgress") < eventNum)
+                PlayerPrefs.SetInt("LevelProgress", eventNum);
         }
-        SceneManager.LoadScene("Level Select");
+        else
+        {
+            PlayerPrefs.SetInt("LevelProgress", eventNum);
+        }
+        SceneManager.LoadScene("Title Screen");
     }
 }

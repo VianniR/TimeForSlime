@@ -48,7 +48,7 @@ public class MorphManager : MonoBehaviour
         morphBubble.SetActive(true);
         StartCoroutine(tempCard.CardMorph());
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.15f);
         if (currMorph != null)
         {
             Destroy(currMorph);
