@@ -179,7 +179,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4672
   angered: 0
-  attackCooldown: 0.6
+  attackCooldown: 0.2
   runSpeed: 8
   attackRange: {fileID: 4532901116162952879}
   defaultKnockback: {fileID: 3296308404937789323}
